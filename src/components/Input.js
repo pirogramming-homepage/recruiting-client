@@ -5,10 +5,12 @@ import { COLORS } from './Variables'
 export const RadioInput = (props) => {
     return (
         <StyledLable>
-            <StyledInput
+            <StyledRadioInput
                 type='radio'
                 name={props.name}
-                palceholder={props.palceholder}
+                value={props.value}
+                required={props.required}
+                onChange={props.onChange}
             />
             {props.children}
         </StyledLable>
@@ -19,7 +21,7 @@ const StyledLable = styled.label`
 display: block;
 padding-bottom: 1rem;
 `
-const StyledInput = styled.input`
+const StyledRadioInput = styled.input`
 border: none;
 outline: none;
 `

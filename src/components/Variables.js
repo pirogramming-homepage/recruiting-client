@@ -5,3 +5,5 @@ export const COLORS = {
 }
 
 export const LEVEL = 20;
+
+export const SERVER_URL = 'http://localhost:3333/api'
