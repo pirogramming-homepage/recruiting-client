@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { COLORS, LEVEL, SERVER_URL } from './Variables'
 import { QuestionDiv } from './QuestionDiv'
@@ -9,6 +9,9 @@ const FirstPage = (props) => {
 }
 
 export const RecruitFirstPage = (props) => {
+	const handleRadioChange = (event) => {
+		props.handleChange(event.target.name, event.target.value);
+	}
 	return (
 		<FirstPage>
 			<QuestionDiv
@@ -19,15 +22,19 @@ export const RecruitFirstPage = (props) => {
 				<RadioInput
 					type="radio"
 					name="attend"
-					value="true"
+					value={true}
 					required="required"
+					checked={props.attend === 'true'}
+					onChange={handleRadioChange}
 				>
 					예
 				</RadioInput>
 				<RadioInput
 					type="radio"
 					name="attend"
-					value="false"
+					value={false}
+					checked={props.attend === 'true' ? false : props.attend !== ''}
+					onChange={handleRadioChange}
 				>
 					아니오
 				</RadioInput>
@@ -39,15 +46,19 @@ export const RecruitFirstPage = (props) => {
 				<RadioInput
 					type="radio"
 					name="workshop"
-					value="true"
+					value={true}
 					required="required"
+					checked={props.workshop === 'true'}
+					onChange={handleRadioChange}
 				>
 					예
 				</RadioInput>
 				<RadioInput
 					type="radio"
 					name="workshop"
-					value="false"
+					value={false}
+					checked={props.workshop === 'true' ? false : props.workshop !== ''}
+					onChange={handleRadioChange}
 				>
 					아니오
 				</RadioInput>
@@ -59,15 +70,19 @@ export const RecruitFirstPage = (props) => {
 				<RadioInput
 					type="radio"
 					name="personal_info"
-					value="true"
+					value={true}
 					required="required"
+					checked={props.personal_info === 'true'}
+					onChange={handleRadioChange}
 				>
 					동의
 				</RadioInput>
 				<RadioInput
 					type="radio"
 					name="personal_info"
-					value="false"
+					value={false}
+					checked={props.personal_info === 'true' ? false : props.personal_info !== ''}
+					onChange={handleRadioChange}
 				>
 					비동의
 				</RadioInput>
@@ -79,15 +94,19 @@ export const RecruitFirstPage = (props) => {
 				<RadioInput
 					type="radio"
 					name="deposit"
-					value="true"
+					value={true}
 					required="required"
+					checked={props.deposit === 'true'}
+					onChange={handleRadioChange}
 				>
 					동의
 				</RadioInput>
 				<RadioInput
 					type="radio"
 					name="deposit"
-					value="false"
+					value={false}
+					checked={props.deposit === 'true' ? false : props.deposit !== ''}
+					onChange={handleRadioChange}
 				>
 					비동의
 				</RadioInput>
@@ -101,5 +120,5 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 3rem 0;
+width: 100%;
 `

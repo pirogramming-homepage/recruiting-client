@@ -13,7 +13,7 @@ export const QuestionDiv = (props) => {
 }
 
 const StyledQuestionDiv = styled.div`
-width:  50%;
+width: 50%;
 padding: 1rem 4rem;
 margin: 1rem;
 background: ${COLORS.bg_gray};
