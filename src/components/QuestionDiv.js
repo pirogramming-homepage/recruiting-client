@@ -7,13 +7,13 @@ export const QuestionDiv = (props) => {
         <StyledQuestionDiv>
             <StyledHeader>{props.header}</StyledHeader>
             <StyledDesc>{props.desc}</StyledDesc>
-            {props.children}
+            <StyledChildren>{props.children}</StyledChildren>
         </StyledQuestionDiv>
     )
 }
 
 const StyledQuestionDiv = styled.div`
-max-width: 50%;
+width: 50%;
 padding: 1rem 4rem;
 margin: 1rem;
 background: ${COLORS.bg_gray};
@@ -30,4 +30,9 @@ const StyledDesc = styled.h1`
 font-weight: 400;
 font-size: 1rem;
 line-height: 1.5rem;
+`
+
+const StyledChildren = styled.div`
+display: flex;
+flex-direction: column;
 `
