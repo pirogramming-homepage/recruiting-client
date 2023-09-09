@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { COLORS, LEVEL, SERVER_URL } from './Variables'
 import { QuestionDiv } from './QuestionDiv'
-import { RadioHorizontalInput, TextInput } from './Input'
+import { RadioInput, RadioHorizontalInput, TextInput, CheckBox } from './Input'
+import { MainButton } from './Button'
 
 const SecondPage = (props) => {
 	return <StyledSecondDiv>{props.children}</StyledSecondDiv>
@@ -14,20 +14,57 @@ const RadioHorizontalWrapper = (props) => {
 		</StyledRadioHorizontalWrapper>
 	)
 }
+const authoHyphen = (target) => {
+	return target.value
+	.replace(/[^0-9]/g, '')
+	.replace(/^(\d{0,3})(\d{0,4})(\d{0,4}){0,11}$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+}
 
 export const RecruitSecondPage = (props) => {
+	const [email, setEmail] = useState(props.email)
 	const [name, setName] = useState(props.name)
 	const [university, setUniversity] = useState(props.university)
 	const [major, setMajor] = useState(props.major)
 	const [minor, setMinor] = useState(props.minor)
-	const [course, setCourse] = useState(props.course)
+	const [address, setAddress] = useState(props.address)
+	const [phone, setPhone] = useState(props.phone)
+	const [interview, setInterview] = useState(props.interview)
 
 	const handleChange = (event) => {
-		props.onInfoChange(event.target.name, event.target.value);
+		props.onInfoChange(event.target.name, event.target.value)
+	}
+	const handleCheck = (event) => {
+		const value = event.target.value
+		const checked = event.target.checked
+		let newInterview = new Set(interview)
+		if(checked) {
+			newInterview.add(value)
+			setInterview(newInterview)
+		} else if(!checked && interview.has(value)) {
+			newInterview.delete(value)
+			setInterview(newInterview)
+		}
+		props.onCheckChange(value, checked)
 	}
 
 	return (
 		<SecondPage>
+			<QuestionDiv
+				header="이메일"
+				desc="작성하신 이메일로 응답 사본이 전송됩니다."
+			>
+				<TextInput
+					type="text"
+					name="email"
+					value={email}
+					required="required"
+					placeholder="pirogramming.official@gmail.com"
+					onChange={event => {
+						setEmail(event.target.value)
+						handleChange(event)
+					}}
+				/>
+			</QuestionDiv>
 			<QuestionDiv
 				header="이름"
 			>
@@ -42,6 +79,27 @@ export const RecruitSecondPage = (props) => {
 						handleChange(event)
 					}}
 				/>
+			</QuestionDiv>
+			<QuestionDiv
+				header="성별"
+			>
+				<RadioInput
+					name="gender"
+					value="M"
+					required="required"
+					checked={props.gender === 'M'}
+					onChange={handleChange}
+				>
+					남자
+				</RadioInput>
+				<RadioInput
+					name="gender"
+					value="W"
+					checked={props.gender === 'W'}
+					onChange={handleChange}
+				>
+					여자
+				</RadioInput>
 			</QuestionDiv>
 			<QuestionDiv
 				header="학교"
@@ -90,7 +148,7 @@ export const RecruitSecondPage = (props) => {
 				/>
 			</QuestionDiv>
 			<QuestionDiv
-				header="해당 전공 이수 학기"
+				header="부전공 이수 학기"
 				desc="(컴퓨터 관련 학과를 복수, 다중 전공하는 경우)"
 			>
 				<RadioHorizontalWrapper>
@@ -143,6 +201,11 @@ export const RecruitSecondPage = (props) => {
 				>
 					6학기 이상
 				</RadioHorizontalInput>
+				<MainButton
+					type="button"
+					onClick={() => props.onInfoChange('course', '')}
+					buttonContent="초기화"
+				/>
 				</RadioHorizontalWrapper>
 			</QuestionDiv>
 			<QuestionDiv
@@ -201,6 +264,83 @@ export const RecruitSecondPage = (props) => {
 				</RadioHorizontalInput>
 				</RadioHorizontalWrapper>
 			</QuestionDiv>
+			<QuestionDiv
+				header="거주지"
+				desc="피로그래밍 활동 기간 동안 거주하시는 곳은 어디인가요? (워크샵, 최종 프로젝트 발표와 같은 주요 행사와 일부 세션은 대면으로 서울에서 진행될 예정입니다.)"
+			>
+				<TextInput
+					type="text"
+					name="address"
+					value={address}
+					required="required"
+					placeholder="경기도 안양시 동안구"
+					onChange={event => {
+						setAddress(event.target.value)
+						handleChange(event)
+					}}
+				/>
+			</QuestionDiv>
+			<QuestionDiv
+				header="전화번호"
+			>
+				<TextInput
+					type="text"
+					name="phone"
+					value={phone}
+					required="required"
+					placeholder="010-0000-0000"
+					onChange={event => {
+						event.target.value = authoHyphen(event.target);
+						setPhone(event.target.value)
+						handleChange(event)
+					}}
+				/>
+			</QuestionDiv>
+			<QuestionDiv
+				header="면접 희망 시간대"
+				desc="중복 선택 가능합니다. 면접은 대면으로 진행될 예정입니다. 1차 서류 합격 여부는 피로그래밍 홈페이지에서 확인하실 수 있습니다."
+			>
+				<CheckBox
+					name="interview"
+					value="토요일 오전"
+					checked={interview.has("토요일 오전")}
+					onChange={event => {
+						handleCheck(event)
+					}}
+				>
+					토요일 오전
+				</CheckBox>
+				<CheckBox
+					name="interview"
+					value="토요일 오후"
+					checked={interview.has("토요일 오후")}
+					onChange={event => {
+						handleCheck(event)
+					}}
+				>
+					토요일 오후
+				</CheckBox>
+				<CheckBox
+					name="interview"
+					value="일요일 오전"
+					checked={interview.has("일요일 오전")}
+					onChange={event => {
+						handleCheck(event)
+					}}
+				>
+					일요일 오전
+				</CheckBox>
+				<CheckBox
+					name="interview"
+					value="일요일 오후"
+					checked={interview.has("일요일 오후")}
+					onChange={event => {
+						handleCheck(event)
+					}}
+				>
+					일요일 오후
+				</CheckBox>
+			</QuestionDiv>
 		</SecondPage>
 	)
 }
@@ -217,6 +357,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-around;
 align-items: left;
+margin-bottom: 1rem;
 width: 100%;
 @media (min-width: 768px) {
 	flex-direction: row;
