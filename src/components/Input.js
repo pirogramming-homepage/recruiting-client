@@ -67,6 +67,7 @@ export const CheckBox = (props) => {
 export const TextAreaInput = (props) => {
     return (
         <StyledTextArea
+	    cols={props.cols}
             rows={10}
             required={props.required}
             maxLength={props.maxLength}

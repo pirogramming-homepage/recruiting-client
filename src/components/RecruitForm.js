@@ -131,7 +131,7 @@ export const RecruitForm = (props) => {
         } else {
             if(window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
                 html2canvas(document.body).then(function(canvas) {
-                    localStorage.setItem('page3', canvas.toDataURL())
+                    localStorage.setItem('page4', canvas.toDataURL())
                 })
                 const body = {}
                 body.attend = attend
@@ -177,6 +177,7 @@ export const RecruitForm = (props) => {
                     page1: localStorage.getItem('page1'),
                     page2: localStorage.getItem('page2'),
                     page3: localStorage.getItem('page3'),
+                    page4: localStorage.getItem('page4'),
                 }
                 // 사본 이메일 전송
                 const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
