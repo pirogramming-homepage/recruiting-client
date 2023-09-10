@@ -42,8 +42,10 @@ const desc2 = `
         const {status: result} = await response.json();
         if(result === true) {
             setStatus('\0\0파일 저장 완료 ✅')
+            props.setStatus('\0\0파일 저장 완료 ✅')
         } else {
             setStatus('\0\0파일 저장 실패 💔')
+            props.setStatus('\0\0파일 저장 실패 💔')
         }
     }
     const handleRadioChange = (event) => {
@@ -68,8 +70,8 @@ const desc2 = `
                     <FileUpload
                         name="coding-test"
                         onChange={event => uploadFile(event)}
-                        filename={filename}
-                        status={status}
+                        filename={props.filename}
+                        status={props.status}
                     />
                 </Wrapper>
             </QuestionDiv>
@@ -126,9 +128,11 @@ const desc2 = `
             <QuestionDiv
                 header="지원서를 잘 확인하셨나요?"
                 desc="지원서를 한 번 제출하면 수정이 불가능합니다. 신중히 검토 후 제출해주시기 바랍니다."
+                required="no"
             />
             <QuestionDiv
                 desc="선발 과정에서의 문의 사항은 카카오톡 플러스친구 (@피로그래밍) 혹은 인스타그램(@pirogramming_official)으로 연락 주시면 친절하게 답변 드리겠습니다."
+                required="no"
             />
         </LastPage>
     )

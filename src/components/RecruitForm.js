@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
+import html2canvas from 'html2canvas'
 import { COLORS, LEVEL, SERVER_URL } from './Variables'
 import { PiroHeader } from './PiroHeader'
 import { ChangePageButton } from './Button'
@@ -8,6 +9,7 @@ import { RecruitFirstPage } from './RecruitFirstPage'
 import { RecruitSecondPage } from './RecruitSecondPage'
 import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
+import { Loading } from './Loading'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -47,7 +49,10 @@ export const RecruitForm = (props) => {
     const [q6_plan, setPlan] = useState('')
 
     const [filename, setFilename] = useState('')
+    const [status, setStatus] = useState('')
     const [doyouknowpiro, setDoyouknowpiro] = useState('')
+
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (name, value) => {
         switch(name) {
@@ -125,6 +130,9 @@ export const RecruitForm = (props) => {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
             if(window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
+                html2canvas(document.body).then(function(canvas) {
+                    localStorage.setItem('page3', canvas.toDataURL())
+                })
                 const body = {}
                 body.attend = attend
                 body.workshop = workshop
@@ -161,14 +169,27 @@ export const RecruitForm = (props) => {
                     },
                     body: JSON.stringify(body)
                 })
+
+                setIndex(index + 1)
+                setLoading(true)
+                const mail_info = {
+                    emailAddress: email,
+                    page1: localStorage.getItem('page1'),
+                    page2: localStorage.getItem('page2'),
+                    page3: localStorage.getItem('page3'),
+                }
                 // 사본 이메일 전송
-                await fetch(`${SERVER_URL}/recruit/send_mail`, {
+                const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(body)
+                    body: JSON.stringify(mail_info)
                 })
+                console.log(result)
+                if(result.status == false) {
+                    navigate("/fail")
+                }
                 navigate("/success", { state: {emailAddress: email} })
             }
         }
@@ -182,6 +203,9 @@ export const RecruitForm = (props) => {
         || deposit === '' || deposit === 'false') {
             window.alert('입력하지 않았거나 동의하지 않은 항목이 있습니다.')
         } else {
+            html2canvas(document.body).then(function(canvas) {
+                localStorage.setItem('page1', canvas.toDataURL())
+            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -192,6 +216,9 @@ export const RecruitForm = (props) => {
         || level === '' || address === '' || phone === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
+            html2canvas(document.body).then(function(canvas) {
+                localStorage.setItem('page2', canvas.toDataURL())
+            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -202,6 +229,9 @@ export const RecruitForm = (props) => {
         || q4_performance === '' || q5_patience === '' || q6_plan === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
+            html2canvas(document.body).then(function(canvas) {
+                localStorage.setItem('page3', canvas.toDataURL())
+            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -241,6 +271,8 @@ export const RecruitForm = (props) => {
             { index === 2
             && <>
             <RecruitThirdPage
+                q1_introduce={q1_introduce} q2_experience={q2_experience} q3_idea={q3_idea}
+                q4_performance={q4_performance} q5_patience={q5_patience} q6_plan={q6_plan}
                 setIntroduce={setIntroduce} setExperience={setExperience} setIdea={setIdea}
                 setPerformance={setPerformance} setPatience={setPatience} setPlan={setPlan}
             />
@@ -254,8 +286,9 @@ export const RecruitForm = (props) => {
             { index === 3
             && <>
             <RecruitLastPage
-                name={name} doyouknowpiro={doyouknowpiro}
+                name={name} doyouknowpiro={doyouknowpiro} filename={filename} status={status}
                 setFilename={setFilename}
+                setStatus={setStatus}
                 handleChange={handleDoYouKnow}
             />
             <ChangePageButton
@@ -264,6 +297,7 @@ export const RecruitForm = (props) => {
             />
             </>
             }
+            { loading && <Loading /> }
         </StyledRecruitForm>
     )
 }
