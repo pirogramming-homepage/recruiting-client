@@ -40,6 +40,7 @@ export const TextInput = (props) => {
             type={props.type}
             name={props.name}
             value={props.value}
+            maxLength={props.maxLength}
             required={props.required}
             placeholder={props.placeholder}
             onChange={props.onChange}
@@ -70,7 +71,9 @@ export const TextAreaInput = (props) => {
             required={props.required}
             maxLength={props.maxLength}
             onInput={props.onInput}
-        />
+            defaultValue={props.children}
+        >
+        </StyledTextArea>
     )
 }
 
