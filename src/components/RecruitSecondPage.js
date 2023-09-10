@@ -57,6 +57,7 @@ export const RecruitSecondPage = (props) => {
 					type="text"
 					name="email"
 					value={email}
+					maxLength={30}
 					required="required"
 					placeholder="pirogramming.official@gmail.com"
 					onChange={event => {
@@ -72,6 +73,7 @@ export const RecruitSecondPage = (props) => {
 					type="text"
 					name="name"
 					value={name}
+					maxLength={8}
 					required="required"
 					placeholder="홍길동"
 					onChange={event => {
@@ -108,6 +110,7 @@ export const RecruitSecondPage = (props) => {
 					type="text"
 					name="university"
 					value={university}
+					maxLength={20}
 					required="required"
 					placeholder="한국대학교"
 					onChange={event => {
@@ -123,6 +126,7 @@ export const RecruitSecondPage = (props) => {
 					type="text"
 					name="major"
 					value={major}
+					maxLength={44}
 					required="required"
 					placeholder="한국어학과"
 					onChange={event => {
@@ -134,11 +138,13 @@ export const RecruitSecondPage = (props) => {
 			<QuestionDiv
 				header="부전공"
 				desc="(복수 혹은 이중 전공인 경우)"
+				required="no"
 			>
 				<TextInput
 					type="text"
 					name="minor"
 					value={minor}
+					maxLength={44}
 					required="required"
 					placeholder="컴퓨터공학과"
 					onChange={event => {
@@ -150,6 +156,7 @@ export const RecruitSecondPage = (props) => {
 			<QuestionDiv
 				header="부전공 이수 학기"
 				desc="(컴퓨터 관련 학과를 복수, 다중 전공하는 경우)"
+				required="no"
 			>
 				<RadioHorizontalWrapper>
 				<RadioHorizontalInput
@@ -272,6 +279,7 @@ export const RecruitSecondPage = (props) => {
 					type="text"
 					name="address"
 					value={address}
+					maxLength={298}
 					required="required"
 					placeholder="경기도 안양시 동안구"
 					onChange={event => {
@@ -287,6 +295,7 @@ export const RecruitSecondPage = (props) => {
 					type="text"
 					name="phone"
 					value={phone}
+					maxLength={20}
 					required="required"
 					placeholder="010-0000-0000"
 					onChange={event => {
