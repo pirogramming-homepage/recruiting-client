@@ -17,7 +17,9 @@ export const RecruitThirdPage = (props) => {
                     required="required"
                     maxLength={700}
                     onInput={event => props.setIntroduce(event.target.value)}
-                />
+                    defaultValue={props.q1_introduce}
+                >
+                </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
                 header="프로그래밍 경험 및 수준, 학습계획 (공백 제외 500자 이하)"
@@ -27,7 +29,9 @@ export const RecruitThirdPage = (props) => {
                     required="required"
                     maxLength={500}
                     onInput={event => props.setExperience(event.target.value)}
-                />
+                    defaultValue={props.q2_experience}
+                >
+                </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
                 header="만들고 싶은 웹 서비스 (공백 제외 400자 이하)"
@@ -37,7 +41,9 @@ export const RecruitThirdPage = (props) => {
                     required="required"
                     maxLength={400}
                     onInput={event => props.setIdea(event.target.value)}
-                />
+                    defaultValue={props.q3_idea}
+                >
+                </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
                 header="협업 또는 팀플 경험 (공백 제외 500자 이하)"
@@ -47,17 +53,21 @@ export const RecruitThirdPage = (props) => {
                     required="required"
                     maxLength={500}
                     onInput={event => props.setPerformance(event.target.value)}
-                />
+                    defaultValue={props.q4_performance}
+                >
+                </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
-                header="무언가를 끝까지 해낸 경험 또는 꾸준히 해본 경험 (공백 제외 500자 이하)"
+                header="무언가를 끝까지, 꾸준히 해낸 경험 (공백 제외 500자 이하)"
                 desc="계획했던 일을 끝까지 해내거나 혹은 꾸준히 해본 경험이 있으신가요? 있다면 그 과정에서 어려운 점은 무엇이었고, 어떻게 극복하셨나요? 혹은 결과는 어땠고, 경험을 통해 무엇을 얻었는지 자유롭게 설명해주세요."
             >
                 <TextAreaInput
                     required="required"
                     maxLength={500}
                     onInput={event => props.setPatience(event.target.value)}
-                />
+                    defaultValue={props.q5_patience}
+                >
+                </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
                 header="방학계획 (자유형식)"
@@ -66,7 +76,9 @@ export const RecruitThirdPage = (props) => {
                 <TextAreaInput
                     required="required"
                     onInput={event => props.setPlan(event.target.value)}
-                />
+                    defaultValue={props.q6_plan}
+                >
+                </TextAreaInput>
             </QuestionDiv>
         </ThridPage>
     )
