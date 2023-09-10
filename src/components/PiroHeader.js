@@ -34,6 +34,11 @@ margin-bottom: 2rem;
 font-weight: 800;
 font-size: 3rem;
 letter-spacing: 0.5rem;
+
+@media (max-width: 768px) {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+}
 `
 const StyledHr = styled.div`
 border-bottom: 1px solid black;
