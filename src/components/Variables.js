@@ -4,7 +4,10 @@ export const COLORS = {
     bg_gray: '#F9F9F9'
 }
 
-export const SERVER_URL = 'http://localhost:3333/api'
+export const SERVER_URL =
+	process.env.NODE_ENV === 'production'
+	? 'http://43.201.16.162:3333/api'
+	: 'http://localhost:3333';
 
 /* 서류 변수 수정 */
 export const WORKSHOP_DATE = "12/23"
