@@ -133,34 +133,35 @@ export const RecruitForm = (props) => {
                 html2canvas(document.body).then(function(canvas) {
                     localStorage.setItem('page4', canvas.toDataURL())
                 })
-                const body = {}
-                body.attend = attend
-                body.workshop = workshop
-                body.personal_info = personal_info
-                body.deposit = deposit
+                const body = {
+                    attend: attend,
+                    workshop: workshop,
+                    personal_info: personal_info,
+                    deposit: deposit,
 
-                body.email = email
-                body.name = name
-                body.gender = gender
-                body.university = university
-                body.major = major
-                body.minor = minor
-                body.course = course
-                body.level = level
-                body.address = address
-                body.phone = phone
-                body.interview = Array.from(interview)
+                    email: email,
+                    name: name,
+                    gender: gender,
+                    university: university,
+                    major: major,
+                    minor: minor,
+                    course: course,
+                    level: level,
+                    address: address,
+                    phone: phone,
+                    interview: Array.from(interview),
 
-                body.q1_introduce = q1_introduce
-                body.q2_experience = q2_experience
-                body.q3_idea = q3_idea
-                body.q4_performance = q4_performance
-                body.q5_patience = q5_patience
-                body.q6_plan = q6_plan
+                    q1_introduce: q1_introduce,
+                    q2_experience: q2_experience,
+                    q3_idea: q3_idea,
+                    q4_performance: q4_performance,
+                    q5_patience: q5_patience,
+                    q6_plan: q6_plan,
 
-                body.coding_test_fileDest = filename
-                body.doyouknowpiro = doyouknowpiro
-                body.piro_level = LEVEL
+                    coding_test_fileDest: filename,
+                    doyouknowpiro: doyouknowpiro,
+                    piro_level: LEVEL,
+                }
                 // 데이터 저장
                 await fetch(`${SERVER_URL}/recruit/save_form`, {
                     method: 'POST',
@@ -172,20 +173,13 @@ export const RecruitForm = (props) => {
 
                 setIndex(index + 1)
                 setLoading(true)
-                const mail_info = {
-                    emailAddress: email,
-                    page1: localStorage.getItem('page1'),
-                    page2: localStorage.getItem('page2'),
-                    page3: localStorage.getItem('page3'),
-                    page4: localStorage.getItem('page4'),
-                }
                 // 사본 이메일 전송
                 const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(mail_info)
+                    body: JSON.stringify(body)
                 })
                 console.log(result)
                 if(result.status == false) {
