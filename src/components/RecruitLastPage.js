@@ -110,7 +110,7 @@ const desc2 = `
 					type="radio"
 					name="doyouknowpiro"
 					value={doyouknowpiro}
-					checked={props.doyouknowpiro === doyouknowpiro}
+					checked={props.doyouknowpiro === 'doyouknowpiro'}
 					onChange={handleRadioChange}
 				>
 					기타
