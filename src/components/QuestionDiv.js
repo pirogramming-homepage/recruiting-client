@@ -4,7 +4,7 @@ import { COLORS } from './Variables'
 
 export const QuestionDiv = (props) => {
     return (
-        <StyledQuestionDiv>
+        <StyledQuestionDiv style={{display: props.display}}>
             <Wapper>
                 <StyledHeader>{props.header}</StyledHeader>
                 {props.required === undefined && <RequiredQuestion>*필수응답</RequiredQuestion>}

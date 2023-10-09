@@ -1,10 +1,10 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { useLocation } from "react-router";
-import { COLORS } from './Variables'
-import { PiroHeader } from './PiroHeader'
+import { COLORS } from '../Variables'
+import { PiroHeader } from '../PiroHeader'
 import { Checkmark } from 'react-checkmark'
-import { MainButton } from './Button';
+import { MainButton } from '../Button';
 
 export const SuccessPage = (props) => {
     const { state } = useLocation();
@@ -32,7 +32,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 hight: 100%;
-padding: 3rem 0;
+padding: 3rem 2rem;
 `
 const Header = styled.h1`
 text-align: center;

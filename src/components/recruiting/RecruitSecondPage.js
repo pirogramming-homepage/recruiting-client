@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { QuestionDiv } from './QuestionDiv'
-import { RadioInput, RadioHorizontalInput, TextInput, CheckBox } from './Input'
-import { MainButton } from './Button'
+import { QuestionDiv } from '../QuestionDiv'
+import { RadioInput, RadioHorizontalInput, TextInput, CheckBox } from '../Input'
+import { MainButton } from '../Button'
+import { authoHyphen } from '../utils'
 
 const SecondPage = (props) => {
 	return <StyledSecondDiv>{props.children}</StyledSecondDiv>
@@ -13,11 +14,6 @@ const RadioHorizontalWrapper = (props) => {
 			{props.children}
 		</StyledRadioHorizontalWrapper>
 	)
-}
-const authoHyphen = (target) => {
-	return target.value
-	.replace(/[^0-9]/g, '')
-	.replace(/^(\d{0,3})(\d{0,4})(\d{0,4}){0,11}$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 }
 
 export const RecruitSecondPage = (props) => {

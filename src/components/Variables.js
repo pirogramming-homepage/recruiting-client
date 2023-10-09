@@ -1,7 +1,8 @@
 export const COLORS = {
     green: '#6DC300',
     stroke_gray: '#959595',
-    bg_gray: '#F9F9F9'
+    bg_gray: '#F9F9F9',
+    dark_red: '#8A0000'
 }
 
 export const SERVER_URL =

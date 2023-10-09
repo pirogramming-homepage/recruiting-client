@@ -29,9 +29,8 @@ font-size: 1rem;
 `
 
 const StyledLogo = styled.h1`
-margin-top: 0;
+margin-top: 0.5rem;
 margin-bottom: 2rem;
-font-weight: 800;
 font-size: 3rem;
 letter-spacing: 0.5rem;
 
@@ -39,9 +38,16 @@ letter-spacing: 0.5rem;
     font-size: 2rem;
     letter-spacing: 0.1rem;
 }
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+font-family: 'SBAggroB';
 `
 const StyledHr = styled.div`
 border-bottom: 1px solid black;
-width: 50%;
 margin: 1rem 0;
+width: 100%;
 `

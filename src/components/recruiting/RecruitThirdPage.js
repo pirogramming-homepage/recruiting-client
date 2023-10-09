@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { QuestionDiv } from './QuestionDiv'
-import { TextAreaInput } from './Input'
-import { SEASON } from './Variables'
+import { QuestionDiv } from '../QuestionDiv'
+import { TextAreaInput } from '../Input'
+import { SEASON } from '../Variables'
 
 export const RecruitThirdPage = (props) => {
     return (

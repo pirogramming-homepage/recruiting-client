@@ -2,14 +2,14 @@ import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
 import html2canvas from 'html2canvas'
-import { COLORS, LEVEL, SERVER_URL } from './Variables'
-import { PiroHeader } from './PiroHeader'
-import { ChangePageButton } from './Button'
+import { COLORS, LEVEL, SERVER_URL } from '../Variables'
+import { PiroHeader } from '../PiroHeader'
+import { ChangePageButton } from '../Button'
 import { RecruitFirstPage } from './RecruitFirstPage'
 import { RecruitSecondPage } from './RecruitSecondPage'
 import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
-import { Loading } from './Loading'
+import { Loading } from '../Loading'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -302,5 +302,12 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 3rem 0;
+padding: 3rem 2rem;
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+font-family: 'NanumSquareNeo-Variable';
 `

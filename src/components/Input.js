@@ -12,6 +12,7 @@ export const RadioInput = (props) => {
                 required={props.required}
                 checked={props.checked}
                 onChange={props.onChange}
+                disabled={props.disabled}
             />
             {props.children}
         </StyledLabel>
@@ -28,6 +29,7 @@ export const RadioHorizontalInput = (props) => {
                 required={props.required}
                 checked={props.checked}
                 onChange={props.onChange}
+                disabled={props.disabled}
             />
             {props.children}
         </StyledHorizontalLabel>
@@ -44,6 +46,7 @@ export const TextInput = (props) => {
             required={props.required}
             placeholder={props.placeholder}
             onChange={props.onChange}
+            disabled={props.disabled}
         />
     )
 }
@@ -58,6 +61,7 @@ export const CheckBox = (props) => {
             checked={props.checked}
             required={props.required}
             onChange={props.onChange}
+            disabled={props.disabled}
         />
         {props.children}
         </StyledLabel>
@@ -73,6 +77,7 @@ export const TextAreaInput = (props) => {
             maxLength={props.maxLength}
             onInput={props.onInput}
             defaultValue={props.children}
+            disabled={props.disabled}
         >
         </StyledTextArea>
     )
@@ -86,6 +91,7 @@ export const FileUpload = (props) => {
                     type="file"
                     name={props.name}
                     onChange={props.onChange}
+                    disabled={props.disabled}
                 />
                 파일 업로드
             </FileLabel>
