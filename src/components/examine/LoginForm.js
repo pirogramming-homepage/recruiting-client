@@ -23,9 +23,9 @@ export default function LoginForm() {
             body: JSON.stringify({name: name, phone: phone, password: password})
         });
         
-        console.log('button pressed!');
+        // console.log('button pressed!');
         const result = await res.json();
-        console.log(result);
+        // console.log(result);
         if(result.result)
             navigate('/examine');
     }

@@ -14,7 +14,7 @@ export default function ExamineDetail() {
     const fetchData = async (document_id) => {
       const res = await fetchGetApi(`/examine/read/${document_id}`);
       const { document } = await res.json();
-      console.log(document);
+      // console.log(document);
       setDocumentData(document);
     }
     fetchData(document_id);

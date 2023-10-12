@@ -5,7 +5,7 @@ export default function useExamine() {
   
   const onClickRankBtn = (index) => {
     setSelectedIndex(index);
-    console.log(selectedIndex);
+    // console.log(selectedIndex);
   }
 
   return {
