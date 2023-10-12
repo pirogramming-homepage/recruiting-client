@@ -75,7 +75,7 @@ export const RecruitThirdPage = (props) => {
             >
                 <TextAreaInput
                     required="required"
-                    onInput={event => props.setPlan(event.target.value)}
+                    onChange={event => props.setPlan(event.target.value)}
                     value={props.q6_plan}
                 >
                 </TextAreaInput>
