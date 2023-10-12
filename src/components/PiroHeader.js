@@ -6,7 +6,10 @@ export const PiroHeader = (props) => {
     return (
         <StyledPiroHeader>
             <StyledSlogan>비전공자를 위한 웹 프로그래밍 동아리</StyledSlogan>
+            <StyledRowDiv>
+            <StyledLogoImage alt="logo" src="piro_logo.png" />
             <StyledLogo>PIROGRAMMING</StyledLogo>
+            </StyledRowDiv>
             {props.children}
             <StyledHr />
         </StyledPiroHeader>
@@ -28,6 +31,10 @@ font-weight: 400;
 font-size: 1rem;
 `
 
+const StyledRowDiv = styled.div`
+display: flex;
+`
+
 const StyledLogo = styled.h1`
 margin-top: 0.5rem;
 margin-bottom: 2rem;
@@ -46,6 +53,13 @@ letter-spacing: 0.5rem;
 }
 font-family: 'SBAggroB';
 `
+
+const StyledLogoImage = styled.img`
+width: 2rem;
+height: 2rem;
+margin: 1rem;
+`
+
 const StyledHr = styled.div`
 border-bottom: 1px solid black;
 margin: 1rem 0;
