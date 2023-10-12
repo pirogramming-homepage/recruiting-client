@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { QuestionDiv } from './QuestionDiv'
-import { LEVEL, CODING_TEST_LINK, SERVER_URL } from './Variables'
-import { FileUpload, RadioInput, TextInput } from './Input'
+import { QuestionDiv } from '../QuestionDiv'
+import { LEVEL, CODING_TEST_LINK, SERVER_URL } from '../Variables'
+import { FileUpload, RadioInput, TextInput } from '../Input'
 
 export const RecruitLastPage = (props) => {
 const desc1 = `코딩테스트는 앞으로 피로그래밍 활동을 얼마나 성실하게 참여할 수 있는지 🔥열정🔥을 평가하기 위한 테스트입니다
@@ -110,7 +110,7 @@ const desc2 = `
 					type="radio"
 					name="doyouknowpiro"
 					value={doyouknowpiro}
-					checked={props.doyouknowpiro === doyouknowpiro}
+					checked={props.doyouknowpiro === 'doyouknowpiro'}
 					onChange={handleRadioChange}
 				>
 					기타

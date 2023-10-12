@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { QuestionDiv } from './QuestionDiv'
-import { TextAreaInput } from './Input'
-import { SEASON } from './Variables'
+import { QuestionDiv } from '../QuestionDiv'
+import { TextAreaInput } from '../Input'
+import { SEASON } from '../Variables'
 
 export const RecruitThirdPage = (props) => {
     return (
@@ -16,8 +16,8 @@ export const RecruitThirdPage = (props) => {
                 <TextAreaInput
                     required="required"
                     maxLength={700}
-                    onInput={event => props.setIntroduce(event.target.value)}
-                    defaultValue={props.q1_introduce}
+                    onChange={event => props.setIntroduce(event.target.value)}
+                    value={props.q1_introduce}
                 >
                 </TextAreaInput>
             </QuestionDiv>
@@ -28,8 +28,8 @@ export const RecruitThirdPage = (props) => {
                 <TextAreaInput
                     required="required"
                     maxLength={500}
-                    onInput={event => props.setExperience(event.target.value)}
-                    defaultValue={props.q2_experience}
+                    onChange={event => props.setExperience(event.target.value)}
+                    value={props.q2_experience}
                 >
                 </TextAreaInput>
             </QuestionDiv>
@@ -40,8 +40,8 @@ export const RecruitThirdPage = (props) => {
                 <TextAreaInput
                     required="required"
                     maxLength={400}
-                    onInput={event => props.setIdea(event.target.value)}
-                    defaultValue={props.q3_idea}
+                    onChange={event => props.setIdea(event.target.value)}
+                    value={props.q3_idea}
                 >
                 </TextAreaInput>
             </QuestionDiv>
@@ -52,8 +52,8 @@ export const RecruitThirdPage = (props) => {
                 <TextAreaInput
                     required="required"
                     maxLength={500}
-                    onInput={event => props.setPerformance(event.target.value)}
-                    defaultValue={props.q4_performance}
+                    onChange={event => props.setPerformance(event.target.value)}
+                    value={props.q4_performance}
                 >
                 </TextAreaInput>
             </QuestionDiv>
@@ -64,8 +64,8 @@ export const RecruitThirdPage = (props) => {
                 <TextAreaInput
                     required="required"
                     maxLength={500}
-                    onInput={event => props.setPatience(event.target.value)}
-                    defaultValue={props.q5_patience}
+                    onChange={event => props.setPatience(event.target.value)}
+                    value={props.q5_patience}
                 >
                 </TextAreaInput>
             </QuestionDiv>
@@ -75,8 +75,8 @@ export const RecruitThirdPage = (props) => {
             >
                 <TextAreaInput
                     required="required"
-                    onInput={event => props.setPlan(event.target.value)}
-                    defaultValue={props.q6_plan}
+                    onChange={event => props.setPlan(event.target.value)}
+                    value={props.q6_plan}
                 >
                 </TextAreaInput>
             </QuestionDiv>

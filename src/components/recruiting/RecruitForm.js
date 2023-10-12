@@ -1,15 +1,14 @@
 import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
-import html2canvas from 'html2canvas'
-import { COLORS, LEVEL, SERVER_URL } from './Variables'
-import { PiroHeader } from './PiroHeader'
-import { ChangePageButton } from './Button'
+import { COLORS, LEVEL, SERVER_URL } from '../Variables'
+import { PiroHeader } from '../PiroHeader'
+import { ChangePageButton } from '../Button'
 import { RecruitFirstPage } from './RecruitFirstPage'
 import { RecruitSecondPage } from './RecruitSecondPage'
 import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
-import { Loading } from './Loading'
+import { Loading } from '../Loading'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -130,37 +129,37 @@ export const RecruitForm = (props) => {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
             if(window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
-                html2canvas(document.body).then(function(canvas) {
-                    localStorage.setItem('page4', canvas.toDataURL())
-                })
-                const body = {}
-                body.attend = attend
-                body.workshop = workshop
-                body.personal_info = personal_info
-                body.deposit = deposit
+                setLoading(true)
+                setIndex(index + 1)
+                const body = {
+                    attend: attend,
+                    workshop: workshop,
+                    personal_info: personal_info,
+                    deposit: deposit,
 
-                body.email = email
-                body.name = name
-                body.gender = gender
-                body.university = university
-                body.major = major
-                body.minor = minor
-                body.course = course
-                body.level = level
-                body.address = address
-                body.phone = phone
-                body.interview = Array.from(interview)
+                    email: email,
+                    name: name,
+                    gender: gender,
+                    university: university,
+                    major: major,
+                    minor: minor,
+                    course: course,
+                    level: level,
+                    address: address,
+                    phone: phone,
+                    interview: Array.from(interview),
 
-                body.q1_introduce = q1_introduce
-                body.q2_experience = q2_experience
-                body.q3_idea = q3_idea
-                body.q4_performance = q4_performance
-                body.q5_patience = q5_patience
-                body.q6_plan = q6_plan
+                    q1_introduce: q1_introduce,
+                    q2_experience: q2_experience,
+                    q3_idea: q3_idea,
+                    q4_performance: q4_performance,
+                    q5_patience: q5_patience,
+                    q6_plan: q6_plan,
 
-                body.coding_test_fileDest = filename
-                body.doyouknowpiro = doyouknowpiro
-                body.piro_level = LEVEL
+                    coding_test_fileDest: filename,
+                    doyouknowpiro: doyouknowpiro,
+                    piro_level: LEVEL,
+                }
                 // 데이터 저장
                 await fetch(`${SERVER_URL}/recruit/save_form`, {
                     method: 'POST',
@@ -169,25 +168,14 @@ export const RecruitForm = (props) => {
                     },
                     body: JSON.stringify(body)
                 })
-
-                setIndex(index + 1)
-                setLoading(true)
-                const mail_info = {
-                    emailAddress: email,
-                    page1: localStorage.getItem('page1'),
-                    page2: localStorage.getItem('page2'),
-                    page3: localStorage.getItem('page3'),
-                    page4: localStorage.getItem('page4'),
-                }
                 // 사본 이메일 전송
                 const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(mail_info)
+                    body: JSON.stringify(body)
                 })
-                console.log(result)
                 if(result.status == false) {
                     navigate("/fail")
                 }
@@ -204,9 +192,6 @@ export const RecruitForm = (props) => {
         || deposit === '' || deposit === 'false') {
             window.alert('입력하지 않았거나 동의하지 않은 항목이 있습니다.')
         } else {
-            html2canvas(document.body).then(function(canvas) {
-                localStorage.setItem('page1', canvas.toDataURL())
-            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -217,9 +202,6 @@ export const RecruitForm = (props) => {
         || level === '' || address === '' || phone === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
-            html2canvas(document.body).then(function(canvas) {
-                localStorage.setItem('page2', canvas.toDataURL())
-            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -230,9 +212,6 @@ export const RecruitForm = (props) => {
         || q4_performance === '' || q5_patience === '' || q6_plan === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
-            html2canvas(document.body).then(function(canvas) {
-                localStorage.setItem('page3', canvas.toDataURL())
-            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -308,5 +287,12 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 3rem 0;
+padding: 3rem 2rem;
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+font-family: 'NanumSquareNeo-Variable';
 `
