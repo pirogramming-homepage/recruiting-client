@@ -113,13 +113,11 @@ padding-bottom: 1rem;
 cursor: pointer;
 `
 const StyledHorizontalLabel = styled.label`
-display: block;
-padding-bottom: 1rem;
+display: inline;
 margin: 0 0.5rem;
 cursor: pointer;
-@media (min-width: 768px) {
-    display: inline;
-    padding-bottom: 0;
+@media (max-width: 1300px) {
+    padding-bottom: 1rem;
 }
 `
 const StyledRadioInput = styled.input`

@@ -36,7 +36,7 @@ flex-direction: row;
 justify-content: space-between;
 margin: 1rem 0;
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
     flex-direction: column;
 }
 `
@@ -47,7 +47,7 @@ font-size: 1.3rem;
 line-height: 2rem;
 margin: 0;
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     font-size: 1rem;
     line-height: 1.2rem;
 }
@@ -58,7 +58,7 @@ font-weight: 400;
 font-size: 1rem;
 line-height: 1.5rem;
 
-@media (max-width: 768px) {
+@media (max-width: 786px) {
     font-size: 0.8rem;
     line-height: 1rem;
 }
