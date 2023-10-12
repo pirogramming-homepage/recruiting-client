@@ -7,7 +7,7 @@ export const COLORS = {
 
 export const SERVER_URL =
 	process.env.NODE_ENV === 'production'
-	? 'http://43.201.16.162:3333/api'
+	? 'http://52.79.205.140:3333/api'
 	: 'http://localhost:3333/api';
 
 /* 서류 변수 수정 */
