@@ -204,11 +204,13 @@ export const RecruitSecondPage = (props) => {
 				>
 					6학기 이상
 				</RadioHorizontalInput>
+				<StyledResetContainer>
 				<MainButton
 					type="button"
 					onClick={() => props.onInfoChange('course', '')}
 					buttonContent="초기화"
 				/>
+				</StyledResetContainer>
 				</RadioHorizontalWrapper>
 			</QuestionDiv>
 			<QuestionDiv
@@ -359,13 +361,20 @@ width: 100%;
 `
 const StyledRadioHorizontalWrapper = styled.div`
 display: flex;
-flex-direction: column;
+flex-direction: row;
 justify-content: space-around;
-align-items: left;
+align-items: center;
 margin-bottom: 1rem;
 width: 100%;
-@media (min-width: 768px) {
-	flex-direction: row;
-	align-items: center;
+@media (max-width: 1300px) {
+	flex-direction: column;
+	align-items: start;
+}
+`
+const StyledResetContainer = styled.div`
+@media (max-width: 1300px) {
+	display: flex;
+	justify-content: end;
+	width: 100%;
 }
 `
