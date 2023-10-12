@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
-import html2canvas from 'html2canvas'
 import { COLORS, LEVEL, SERVER_URL } from '../Variables'
 import { PiroHeader } from '../PiroHeader'
 import { ChangePageButton } from '../Button'
@@ -130,9 +129,8 @@ export const RecruitForm = (props) => {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
             if(window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
-                html2canvas(document.body).then(function(canvas) {
-                    localStorage.setItem('page4', canvas.toDataURL())
-                })
+                setLoading(true)
+                setIndex(index + 1)
                 const body = {
                     attend: attend,
                     workshop: workshop,
@@ -170,9 +168,6 @@ export const RecruitForm = (props) => {
                     },
                     body: JSON.stringify(body)
                 })
-
-                setIndex(index + 1)
-                setLoading(true)
                 // 사본 이메일 전송
                 const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
                     method: 'POST',
@@ -181,7 +176,6 @@ export const RecruitForm = (props) => {
                     },
                     body: JSON.stringify(body)
                 })
-                console.log(result)
                 if(result.status == false) {
                     navigate("/fail")
                 }
@@ -198,9 +192,6 @@ export const RecruitForm = (props) => {
         || deposit === '' || deposit === 'false') {
             window.alert('입력하지 않았거나 동의하지 않은 항목이 있습니다.')
         } else {
-            html2canvas(document.body).then(function(canvas) {
-                localStorage.setItem('page1', canvas.toDataURL())
-            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -211,9 +202,6 @@ export const RecruitForm = (props) => {
         || level === '' || address === '' || phone === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
-            html2canvas(document.body).then(function(canvas) {
-                localStorage.setItem('page2', canvas.toDataURL())
-            })
             scrollTop()
             setIndex(index + 1)
         }
@@ -224,9 +212,6 @@ export const RecruitForm = (props) => {
         || q4_performance === '' || q5_patience === '' || q6_plan === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
-            html2canvas(document.body).then(function(canvas) {
-                localStorage.setItem('page3', canvas.toDataURL())
-            })
             scrollTop()
             setIndex(index + 1)
         }
