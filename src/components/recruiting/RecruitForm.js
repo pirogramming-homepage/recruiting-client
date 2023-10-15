@@ -286,10 +286,6 @@ export const RecruitForm = (props) => {
 }
 
 const StyledRecruitForm = styled.form`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
 padding: 3rem 2rem;
 @font-face {
     font-family: 'NanumSquareNeo-Variable';

@@ -18,12 +18,16 @@ export const QuestionDiv = (props) => {
 const StyledQuestionDiv = styled.div`
 width: 50%;
 padding: 1rem 4rem;
-margin: 1rem;
+margin-bottom: 1rem;
 background: ${COLORS.bg_gray};
 border-radius: 2rem;
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
     width: 70%;
+}
+
+@media (max-width: 768px) {
+    width: 80%;
     padding: 1rem 2rem;
     font-size: 1rem;
     line-height: 1.2rem;
@@ -47,7 +51,7 @@ font-size: 1.3rem;
 line-height: 2rem;
 margin: 0;
 
-@media (max-width: 1080px) {
+@media (max-width: 768px) {
     font-size: 1rem;
     line-height: 1.2rem;
 }

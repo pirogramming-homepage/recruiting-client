@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { COLORS } from './Variables'
+import Gap from './Gap'
 
 export const MainButton = (props) => {
     return (
@@ -12,11 +13,16 @@ export const ChangePageButton = (props) => {
     return (
         <Wrapper>
             {props.prev
-            && <MainButton
+            && (
+                <>
+                <MainButton
                     type="button"
                     onClick={props.onClickPrev}
                     buttonContent={"이전"}
                 />
+                <Gap />
+                </>
+            )
             }
             {props.next
             && <MainButton
@@ -36,18 +42,18 @@ export const ChangePageButton = (props) => {
 }
 
 const StyledMainButton = styled.button`
-padding: 0.5rem 2rem;
+padding: 0.5rem;
 color: white;
 background: ${COLORS.green};
 border-radius: 1rem;
 border: none;
 text-align: center;
 cursor: pointer;
+width: 5rem;
 `
 
 const Wrapper = styled.div`
 display: flex;
-justify-content: space-around;
+justify-content: center;
 align-items: center;
-width: 50%;
 `

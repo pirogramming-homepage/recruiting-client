@@ -5,6 +5,7 @@ import { COLORS } from '../Variables'
 import { PiroHeader } from '../PiroHeader'
 import { Checkmark } from 'react-checkmark'
 import { MainButton } from '../Button';
+import PageContainer from '../PageContainer';
 
 export const SuccessPage = (props) => {
     const { state } = useLocation();
@@ -14,7 +15,7 @@ export const SuccessPage = (props) => {
             <PiroHeader />
             <Checkmark size='xxLarge' />
             <Header>제출이 정상적으로 완료되었습니다</Header>
-            <Description>작성하신 이메일 { state.emailAddress } 로 응답 사본이 전송되었습니다</Description>
+            <Description>작성하신 이메일 { state?.emailAddress } 로 응답 사본이 전송되었습니다</Description>
             <Description>피로그래밍에 지원해 주셔서 감사합니다!</Description>
             <a href="https://pirogramming.com/">
                 <MainButton
@@ -33,6 +34,13 @@ justify-content: center;
 align-items: center;
 hight: 100%;
 padding: 3rem 2rem;
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+font-family: 'NanumSquareNeo-Variable';
 `
 const Header = styled.h1`
 text-align: center;

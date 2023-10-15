@@ -3,17 +3,14 @@ import styled from 'styled-components'
 import { COLORS, WORKSHOP_DATE, FULL_SCHEDULE, INTERVIEW_DATE, LEVEL, SERVER_URL } from '../Variables'
 import { QuestionDiv } from '../QuestionDiv'
 import { RadioInput } from '../Input'
-
-const FirstPage = (props) => {
-	return <StyledFirstDiv>{props.children}</StyledFirstDiv>
-}
+import PageContainer from '../PageContainer'
 
 export const RecruitFirstPage = (props) => {
 	const handleRadioChange = (event) => {
 		props.handleChange(event.target.name, event.target.value);
 	}
 	return (
-		<FirstPage>
+		<PageContainer>
 			<QuestionDiv
 				header="피로그래밍 모든 일정에 참여할 수 있습니까?"
 				desc={`면접(${INTERVIEW_DATE}), 정규 활동 (${FULL_SCHEDULE}) 매주 화, 목, 토 (10:00 ~ 17:00 공휴일은 제외)
@@ -111,14 +108,6 @@ export const RecruitFirstPage = (props) => {
 					비동의
 				</RadioInput>
 			</QuestionDiv>
-		</FirstPage>
+		</PageContainer>
 	)
 }
-
-const StyledFirstDiv = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-`
