@@ -4,8 +4,7 @@ import { useLocation } from "react-router";
 import { COLORS } from '../Variables'
 import { PiroHeader } from '../PiroHeader'
 import { Checkmark } from 'react-checkmark'
-import { MainButton } from '../Button';
-import PageContainer from '../PageContainer';
+import { TextButton } from '../Button';
 
 export const SuccessPage = (props) => {
     const { state } = useLocation();
@@ -18,7 +17,7 @@ export const SuccessPage = (props) => {
             <Description>작성하신 이메일 { state?.emailAddress } 로 응답 사본이 전송되었습니다</Description>
             <Description>피로그래밍에 지원해 주셔서 감사합니다!</Description>
             <a href="https://pirogramming.com/">
-                <MainButton
+                <TextButton
                     type="button"
                     buttonContent="Pirogramming"
                 />
