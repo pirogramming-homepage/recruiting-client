@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { QuestionDiv } from '../QuestionDiv'
 import { LEVEL, CODING_TEST_LINK, SERVER_URL } from '../Variables'
 import { FileUpload, RadioInput, TextInput } from '../Input'
+import PageContainer from '../PageContainer'
 
 export const RecruitLastPage = (props) => {
 const desc1 = `코딩테스트는 앞으로 피로그래밍 활동을 얼마나 성실하게 참여할 수 있는지 🔥열정🔥을 평가하기 위한 테스트입니다
@@ -49,11 +50,12 @@ const desc2 = `
         }
     }
     const handleRadioChange = (event) => {
+        props.setDoyouknowValue('');
         props.handleChange(event.target.value);
     }
 
     return (
-        <LastPage>
+        <PageContainer>
             <QuestionDiv
                 header="코딩테스트"
             >
@@ -109,18 +111,18 @@ const desc2 = `
                 <RadioInput
 					type="radio"
 					name="doyouknowpiro"
-					value={doyouknowpiro}
-					checked={props.doyouknowpiro === 'doyouknowpiro'}
+					value="etc"
+                    checked={props.doyouknowpiro === 'etc'}
 					onChange={handleRadioChange}
 				>
 					기타
                     <TextInput
                         type="text"
                         name="etc"
-                        value={doyouknowpiro}
+                        value={props.doyouknowValue}
                         onChange={event => {
-                            setDoyouknowpiro(event.target.value)
-                            handleRadioChange(event)
+                            props.setDoyouknowValue(event.target.value)
+                            props.handleChange('etc');
                         }}
                     />
 				</RadioInput>
@@ -134,17 +136,10 @@ const desc2 = `
                 desc="선발 과정에서의 문의 사항은 카카오톡 플러스친구 (@피로그래밍) 혹은 인스타그램(@pirogramming_official)으로 연락 주시면 친절하게 답변 드리겠습니다."
                 required="no"
             />
-        </LastPage>
+        </PageContainer>
     )
 }
 
-const LastPage = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-`
 const Wrapper = styled.div`
 display: flex;
 justify-content: center;

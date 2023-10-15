@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { QuestionDiv } from '../QuestionDiv'
 import { TextAreaInput } from '../Input'
 import { SEASON } from '../Variables'
+import PageContainer from '../PageContainer'
 
 export const RecruitThirdPage = (props) => {
     return (
-        <ThridPage>
+        <PageContainer>
             정해진 글자 수 조건에 유념해서 작성해주세요.
 
             <QuestionDiv
@@ -80,14 +81,6 @@ export const RecruitThirdPage = (props) => {
                 >
                 </TextAreaInput>
             </QuestionDiv>
-        </ThridPage>
+        </PageContainer>
     )
 }
-
-const ThridPage = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-`

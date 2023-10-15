@@ -50,6 +50,7 @@ export const RecruitForm = (props) => {
     const [filename, setFilename] = useState('')
     const [status, setStatus] = useState('')
     const [doyouknowpiro, setDoyouknowpiro] = useState('')
+    const [doyouknowValue, setDoyouknowValue] = useState('')
 
     const [loading, setLoading] = useState(false)
 
@@ -157,7 +158,7 @@ export const RecruitForm = (props) => {
                     q6_plan: q6_plan,
 
                     coding_test_fileDest: filename,
-                    doyouknowpiro: doyouknowpiro,
+                    doyouknowpiro: doyouknowpiro !== 'etc' ? doyouknowpiro : doyouknowValue,
                     piro_level: LEVEL,
                 }
                 // 데이터 저장
@@ -267,9 +268,11 @@ export const RecruitForm = (props) => {
             && <>
             <RecruitLastPage
                 name={name} doyouknowpiro={doyouknowpiro} filename={filename} status={status}
+                doyouknowValue={doyouknowValue}
                 setFilename={setFilename}
                 setStatus={setStatus}
                 handleChange={handleDoYouKnow}
+                setDoyouknowValue={setDoyouknowValue}
             />
             <ChangePageButton
                 prev={true} next={false} submit={true}
@@ -283,10 +286,6 @@ export const RecruitForm = (props) => {
 }
 
 const StyledRecruitForm = styled.form`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
 padding: 3rem 2rem;
 @font-face {
     font-family: 'NanumSquareNeo-Variable';
@@ -295,4 +294,5 @@ padding: 3rem 2rem;
     font-style: normal;
 }
 font-family: 'NanumSquareNeo-Variable';
+background-color: 'white';
 `
