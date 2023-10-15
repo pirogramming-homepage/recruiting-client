@@ -294,4 +294,5 @@ padding: 3rem 2rem;
     font-style: normal;
 }
 font-family: 'NanumSquareNeo-Variable';
+background-color: 'white';
 `

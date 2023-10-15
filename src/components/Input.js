@@ -128,6 +128,7 @@ cursor: pointer;
 const StyledInput = styled.input`
 border: none;
 border-bottom: 1px solid black;
+border-radius: 0;
 outline: none;
 width: 100%;
 background: none;
