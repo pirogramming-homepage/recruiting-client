@@ -41,6 +41,10 @@ export const ChangePageButton = (props) => {
     )
 }
 
+export const TextButton = (props) => (
+    <StyledTextButton type={props.type} onClick={props.onClick}>{props.buttonContent}</StyledTextButton>
+)
+
 const StyledMainButton = styled.button`
 padding: 0.5rem;
 color: white;
@@ -56,4 +60,14 @@ const Wrapper = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+`
+
+const StyledTextButton = styled.button`
+padding: 0.5rem 1rem;
+color: white;
+background: ${COLORS.green};
+border-radius: 1rem;
+border: none;
+text-align: center;
+cursor: pointer;
 `
