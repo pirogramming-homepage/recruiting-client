@@ -49,6 +49,7 @@ const desc2 = `
         }
     }
     const handleRadioChange = (event) => {
+        props.setDoyouknowValue('');
         props.handleChange(event.target.value);
     }
 
@@ -109,18 +110,18 @@ const desc2 = `
                 <RadioInput
 					type="radio"
 					name="doyouknowpiro"
-					value={doyouknowpiro}
-					checked={props.doyouknowpiro === 'doyouknowpiro'}
+					value="etc"
+                    checked={props.doyouknowpiro === 'etc'}
 					onChange={handleRadioChange}
 				>
 					기타
                     <TextInput
                         type="text"
                         name="etc"
-                        value={doyouknowpiro}
+                        value={props.doyouknowValue}
                         onChange={event => {
-                            setDoyouknowpiro(event.target.value)
-                            handleRadioChange(event)
+                            props.setDoyouknowValue(event.target.value)
+                            props.handleChange('etc');
                         }}
                     />
 				</RadioInput>
