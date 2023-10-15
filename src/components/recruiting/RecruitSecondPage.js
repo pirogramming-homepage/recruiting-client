@@ -4,10 +4,8 @@ import { QuestionDiv } from '../QuestionDiv'
 import { RadioInput, RadioHorizontalInput, TextInput, CheckBox } from '../Input'
 import { MainButton } from '../Button'
 import { authoHyphen } from '../utils'
+import PageContainer from '../PageContainer'
 
-const SecondPage = (props) => {
-	return <StyledSecondDiv>{props.children}</StyledSecondDiv>
-}
 const RadioHorizontalWrapper = (props) => {
 	return (
 		<StyledRadioHorizontalWrapper>
@@ -44,7 +42,7 @@ export const RecruitSecondPage = (props) => {
 	}
 
 	return (
-		<SecondPage>
+		<PageContainer>
 			<QuestionDiv
 				header="이메일"
 				desc="작성하신 이메일로 응답 사본이 전송됩니다."
@@ -348,17 +346,10 @@ export const RecruitSecondPage = (props) => {
 					일요일 오후
 				</CheckBox>
 			</QuestionDiv>
-		</SecondPage>
+		</PageContainer>
 	)
 }
 
-const StyledSecondDiv = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100%;
-`
 const StyledRadioHorizontalWrapper = styled.div`
 display: flex;
 flex-direction: row;
