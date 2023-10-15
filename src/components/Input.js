@@ -130,7 +130,6 @@ border: none;
 border-bottom: 1px solid black;
 border-radius: 0;
 outline: none;
-width: 100%;
 background: none;
 font-size: 1rem;
 line-height: 1.5rem;

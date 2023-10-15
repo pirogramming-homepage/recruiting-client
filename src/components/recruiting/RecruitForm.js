@@ -286,7 +286,7 @@ export const RecruitForm = (props) => {
 }
 
 const StyledRecruitForm = styled.form`
-padding: 3rem 2rem;
+padding: 1rem 2rem 3rem 2rem;
 @font-face {
     font-family: 'NanumSquareNeo-Variable';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
