@@ -120,6 +120,7 @@ const desc2 = `
                         type="text"
                         name="etc"
                         value={props.doyouknowValue}
+                        maxLength={40}
                         onChange={event => {
                             props.setDoyouknowValue(event.target.value)
                             props.handleChange('etc');

@@ -158,7 +158,8 @@ export const RecruitForm = (props) => {
                     q6_plan: q6_plan,
 
                     coding_test_fileDest: filename,
-                    doyouknowpiro: doyouknowpiro !== 'etc' ? doyouknowpiro : doyouknowValue,
+                    doyouknowpiro: doyouknowpiro,
+                    doyouknowValue: doyouknowValue,
                     piro_level: LEVEL,
                 }
                 // 데이터 저장
