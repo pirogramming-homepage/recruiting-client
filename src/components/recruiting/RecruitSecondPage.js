@@ -5,6 +5,7 @@ import { RadioInput, RadioHorizontalInput, TextInput, CheckBox } from '../Input'
 import { MainButton } from '../Button'
 import { authoHyphen } from '../utils'
 import PageContainer from '../PageContainer'
+import { FIRST_RESULT, INTERVIEW_SAT, INTERVIEW_SUN } from '../Variables'
 
 const RadioHorizontalWrapper = (props) => {
 	return (
@@ -303,7 +304,7 @@ export const RecruitSecondPage = (props) => {
 			</QuestionDiv>
 			<QuestionDiv
 				header="면접 희망 시간대"
-				desc="중복 선택 가능합니다. 면접은 대면으로 진행될 예정입니다. 1차 서류 합격 여부는 피로그래밍 홈페이지에서 확인하실 수 있습니다."
+				desc={`중복 선택 가능합니다. 면접은 대면으로 진행될 예정입니다. 1차 서류 합격 여부는 ${FIRST_RESULT} 피로그래밍 홈페이지에서 확인하실 수 있습니다.`}
 			>
 				<CheckBox
 					name="interview"
@@ -313,7 +314,7 @@ export const RecruitSecondPage = (props) => {
 						handleCheck(event)
 					}}
 				>
-					토요일 오전
+					{INTERVIEW_SAT} 토요일 오전
 				</CheckBox>
 				<CheckBox
 					name="interview"
@@ -323,7 +324,7 @@ export const RecruitSecondPage = (props) => {
 						handleCheck(event)
 					}}
 				>
-					토요일 오후
+					{INTERVIEW_SAT} 토요일 오후
 				</CheckBox>
 				<CheckBox
 					name="interview"
@@ -333,7 +334,7 @@ export const RecruitSecondPage = (props) => {
 						handleCheck(event)
 					}}
 				>
-					일요일 오전
+					{INTERVIEW_SUN} 일요일 오전
 				</CheckBox>
 				<CheckBox
 					name="interview"
@@ -343,7 +344,7 @@ export const RecruitSecondPage = (props) => {
 						handleCheck(event)
 					}}
 				>
-					일요일 오후
+					{INTERVIEW_SUN} 일요일 오후
 				</CheckBox>
 			</QuestionDiv>
 		</PageContainer>
