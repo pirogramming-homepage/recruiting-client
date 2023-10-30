@@ -91,6 +91,7 @@ export const FileUpload = (props) => {
                     type="file"
                     name={props.name}
                     onChange={props.onChange}
+                    onClick={props.onClick}
                     disabled={props.disabled}
                 />
                 파일 업로드

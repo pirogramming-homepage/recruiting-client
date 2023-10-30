@@ -26,6 +26,14 @@ const desc2 = `
     const [status, setStatus] = useState('')
     const [doyouknowpiro, setDoyouknowpiro] = useState('')
 
+    const onClickUpload = (event) => {
+        event.target.value = null
+        setFilename('')
+        props.setFilename('')
+        setStatus('')
+        props.setStatus('')
+    }
+
     const uploadFile = async(event) => {
         event.preventDefault()
         
@@ -72,6 +80,7 @@ const desc2 = `
                     <FileUpload
                         name="coding-test"
                         onChange={event => uploadFile(event)}
+                        onClick={onClickUpload}
                         filename={props.filename}
                         status={props.status}
                     />
