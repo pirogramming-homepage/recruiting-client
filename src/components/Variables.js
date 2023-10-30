@@ -11,9 +11,17 @@ export const SERVER_URL =
 	: '//localhost:3333/api';
 
 /* 서류 변수 수정 */
-export const WORKSHOP_DATE = "12/23"
-export const INTERVIEW_DATE = "12/10 (토) or 12/11 (일)"
-export const FULL_SCHEDULE = "2022/12/27 ~ 2023/2/21"
+// firstPage
+export const WORKSHOP_DATE = "12/22"
+export const INTERVIEW_DATE = "12/09 (토) or 12/10 (일)"
+export const FULL_SCHEDULE = "2023/12/26 ~ 2024/2/20"
 export const LEVEL = 20
 export const SEASON = "겨울방학"
+
+// secondPage
+export const FIRST_RESULT = "12월 06일 23시 이후"
+export const INTERVIEW_SAT = "12/09"
+export const INTERVIEW_SUN = "12/10"
+
+// lastPage
 export const CODING_TEST_LINK = "https://naver.com"
