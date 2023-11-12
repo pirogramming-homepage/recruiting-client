@@ -71,7 +71,7 @@ export const CheckBox = (props) => {
 export const TextAreaInput = (props) => {
     return (
         <StyledTextArea
-	    cols={props.cols}
+	        cols={props.cols}
             rows={10}
             required={props.required}
             maxLength={props.maxLength}
@@ -141,11 +141,28 @@ const StyledCheckBox = styled.input`
 const StyledTextArea = styled.textarea`
 border: 1px solid gray;
 outline: none;
-border-radius: 1.5rem;
-font-size: 1rem;
-line-height: 1.5rem;
+border-radius: 1rem;
+font-size: 0.9rem;
+line-height: 1.2rem;
 margin: 1rem 0;
-padding: 1rem 2rem;
+padding: 0.8rem 1rem;
+overflow-y: scroll;
+resize: none;
+
+&::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 3px;
+}
+&::-webkit-scrollbar-track {
+    width: 5px;
+    border-radius: 3px;
+    margin: 0.5rem 0;
+}
+&::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 3px;
+    background: ${COLORS.green};
+}
 `
 const Wrapper = styled.div`
 display: flex;
