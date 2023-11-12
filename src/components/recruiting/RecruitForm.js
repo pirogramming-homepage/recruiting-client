@@ -9,6 +9,7 @@ import { RecruitSecondPage } from './RecruitSecondPage'
 import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
 import { Loading } from '../Loading'
+import useForm from './use-form'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -21,177 +22,166 @@ export const RecruitForm = (props) => {
         scrollTop()
     }, [])
 
-    const [index, setIndex] = useState(0)
-    const [attend, setAttend] = useState('')
-    const [workshop, setWorkshop] = useState('')
-    const [personal_info, setPersonal_info] = useState('')
-    const [deposit, setDeposit] = useState('')
-
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [gender, setGender] = useState('')
-    const [university, setUniversity] = useState('')
-    const [major, setMajor] = useState('')
-    const [minor, setMinor] = useState('')
-    const [course, setCourse] = useState('')
-    const [level, setLevel] = useState('')
-    const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
-    const [interview, setInterview] = useState(new Set())
-
-    
-    const [q1_introduce, setIntroduce] = useState('')
-    const [q2_experience, setExperience] = useState('')
-    const [q3_idea, setIdea] = useState('')
-    const [q4_performance, setPerformance] = useState('')
-    const [q5_patience,  setPatience] = useState('')
-    const [q6_plan, setPlan] = useState('')
-
-    const [filename, setFilename] = useState('')
-    const [status, setStatus] = useState('')
-    const [doyouknowpiro, setDoyouknowpiro] = useState('')
-    const [doyouknowValue, setDoyouknowValue] = useState('')
-
     const [loading, setLoading] = useState(false)
-
-    const handleChange = (name, value) => {
-        switch(name) {
-            case 'attend':
-                setAttend(value)
-                break
-            case 'workshop':
-                setWorkshop(value)
-                break
-            case 'personal_info':
-                setPersonal_info(value)
-                break
-            case 'deposit':
-                setDeposit(value)
-                break
-        }
-    }
-    const onInfoChange = (name, value) => {
-        switch(name) {
-            case 'email':
-                setEmail(value)
-                break
-            case 'name':
-                setName(value)
-                break
-            case 'gender':
-                setGender(value)
-                break
-            case 'university':
-                setUniversity(value)
-                break
-            case 'major':
-                setMajor(value)
-                break
-            case 'minor':
-                setMinor(value)
-                break
-            case 'course':
-                setCourse(value)
-                break
-            case 'level':
-                setLevel(value)
-                break
-            case 'address':
-                setAddress(value)
-                break
-            case 'phone':
-                setPhone(value)
-                break
-            case 'interview':
-                setInterview(value)
-                break
-        }
-    }
-    const handleCheck = (value, isChecked) => {
-        if(isChecked) {
-            interview.add(value)
-            setInterview(interview)
-        } else if(!isChecked && interview.has(value)) {
-            interview.delete(value)
-            setInterview(interview)
-        }
-    }
-    const handleDoYouKnow = (value) => {
-        setDoyouknowpiro(value);
-    }
 
     // navigate는 react function 위치에
     // handleSubmit 안에 있으면 오류?
     const navigate = useNavigate()
 
-    const handleSubmit = async(e) => {
+    const {
+        index,
+        attend,
+        workshop,
+        reason,
+        personal_info,
+        deposit,
+        email,
+        name,
+        gender,
+        university,
+        major,
+        minor,
+        course,
+        level,
+        address,
+        phone,
+        interview,
+        q1_introduce,
+        q2_experience,
+        q3_idea,
+        q4_performance,
+        q5_patience,
+        q6_plan,
+        filename,
+        fileInfo,
+        status,
+        doyouknowpiro,
+        doyouknowValue,
+        setIndex,
+        setAttend,
+        setWorkshop,
+        setReason,
+        setPersonal_info,
+        setDeposit,
+        setEmail,
+        setName,
+        setGender,
+        setUniversity,
+        setMajor,
+        setMinor,
+        setCourse,
+        setLevel,
+        setAddress,
+        setPhone,
+        setInterview,
+        setIntroduce,
+        setExperience,
+        setIdea,
+        setPerformance,
+        setPatience,
+        setPlan,
+        setFilename,
+        setFileInfo,
+        setStatus,
+        setDoyouknowpiro,
+        setDoyouknowValue,
+        handleChange,
+        onInfoChange,
+        handleCheck,
+    } = useForm()
+
+    const tryFormSubmit = async () => {
+        const body = {
+            attend: attend,
+            workshop: workshop,
+            reason: reason,
+            personal_info: personal_info,
+            deposit: deposit,
+
+            email: email,
+            name: name,
+            gender: gender,
+            university: university,
+            major: major,
+            minor: minor,
+            course: course,
+            level: level,
+            address: address,
+            phone: phone,
+            interview: Array.from(interview),
+            q1_introduce: q1_introduce,
+            q2_experience: q2_experience,
+            q3_idea: q3_idea,
+            q4_performance: q4_performance,
+            q5_patience: q5_patience,
+            q6_plan: q6_plan,
+
+            coding_test_fileDest: filename,
+            coding_test_file: fileInfo,
+            doyouknowpiro: doyouknowpiro,
+            doyouknowValue: doyouknowValue,
+            piro_level: LEVEL,
+        }
+
+        // 코딩테스트 파일 저장
+        const formData = new FormData()
+        formData.append('coding-test', fileInfo)
+        formData.append('name', name)
+        const response = await fetch(`${SERVER_URL}/recruit/save_file`, {
+            method: 'POST',
+            body: formData
+        })
+        const {status} = await response.json();
+        if(status === true) {
+            setStatus('\0\0파일 저장 완료 ✅')
+        } else {
+            setStatus('\0\0파일 저장 실패 💔')
+        }
+        // 데이터 저장
+        await fetch(`${SERVER_URL}/recruit/save_form`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+        // 사본 이메일 전송
+        const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+
+        return result
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        if(filename === '' || doyouknowpiro === '') {
+        if (filename === '' || doyouknowpiro === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
-            if(window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
+            if (window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
                 setLoading(true)
                 setIndex(index + 1)
-                const body = {
-                    attend: attend,
-                    workshop: workshop,
-                    personal_info: personal_info,
-                    deposit: deposit,
 
-                    email: email,
-                    name: name,
-                    gender: gender,
-                    university: university,
-                    major: major,
-                    minor: minor,
-                    course: course,
-                    level: level,
-                    address: address,
-                    phone: phone,
-                    interview: Array.from(interview),
+                const result = await tryFormSubmit();
 
-                    q1_introduce: q1_introduce,
-                    q2_experience: q2_experience,
-                    q3_idea: q3_idea,
-                    q4_performance: q4_performance,
-                    q5_patience: q5_patience,
-                    q6_plan: q6_plan,
-
-                    coding_test_fileDest: filename,
-                    doyouknowpiro: doyouknowpiro,
-                    doyouknowValue: doyouknowValue,
-                    piro_level: LEVEL,
-                }
-                // 데이터 저장
-                await fetch(`${SERVER_URL}/recruit/save_form`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(body)
-                })
-                // 사본 이메일 전송
-                const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(body)
-                })
-                if(result.status == false) {
+                if (result.status == false) {
                     navigate("/fail")
                 }
-                navigate("/success", { state: {emailAddress: email} })
+                navigate("/success", { state: { emailAddress: email } })
             }
         }
     }
 
     // 비어 있는 폼 확인
     const checkFirstForm = () => {
-        if(attend === '' || attend === 'false'
-        || workshop === '' || workshop === 'false'
-        || personal_info === '' || personal_info === 'false'
-        || deposit === '' || deposit === 'false') {
+        if (attend === '' || attend === 'false'
+            || workshop === '' || (workshop === 'false' && reason === '')
+            || personal_info === '' || personal_info === 'false'
+            || deposit === '' || deposit === 'false') {
             window.alert('입력하지 않았거나 동의하지 않은 항목이 있습니다.')
         } else {
             scrollTop()
@@ -200,8 +190,8 @@ export const RecruitForm = (props) => {
         // setIndex(index + 1)
     }
     const checkSecondForm = () => {
-        if(name === '' || gender === '' || university === '' || major === ''
-        || level === '' || address === '' || phone === '') {
+        if (name === '' || gender === '' || university === '' || major === ''
+            || level === '' || address === '' || phone === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
             scrollTop()
@@ -210,8 +200,8 @@ export const RecruitForm = (props) => {
         // setIndex(index + 1)
     }
     const checkThirdForm = () => {
-        if(q1_introduce === '' || q2_experience === '' || q3_idea === ''
-        || q4_performance === '' || q5_patience === '' || q6_plan === '') {
+        if (q1_introduce === '' || q2_experience === '' || q3_idea === ''
+            || q4_performance === '' || q5_patience === '' || q6_plan === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
             scrollTop()
@@ -223,65 +213,68 @@ export const RecruitForm = (props) => {
     return (
         <StyledRecruitForm onSubmit={handleSubmit} encType="multipart/form-data">
             <PiroHeader>{`${LEVEL}기 지원서`}</PiroHeader>
-            { index === 0
-            && <>
-            <RecruitFirstPage
-                attend={attend} workshop={workshop} personal_info={personal_info} deposit={deposit}
-                handleChange={handleChange}
-            />
-            <ChangePageButton
-                prev={false} next={true} submit={false}
-                onClickNext={checkFirstForm}
-            />
-            </>
+            {index === 0
+                && <>
+                    <RecruitFirstPage
+                        attend={attend} personal_info={personal_info} deposit={deposit}
+                        workshop={workshop} setWorkshop={setWorkshop}
+                        reason={reason} setReason={setReason}
+                        handleChange={handleChange}
+                    />
+                    <ChangePageButton
+                        prev={false} next={true} submit={false}
+                        onClickNext={checkFirstForm}
+                    />
+                </>
             }
-            { index === 1
-            && <>
-            <RecruitSecondPage
-                email={email} name={name} gender={gender} university={university} major={major} minor={minor}
-                course={course} level={level} address={address} phone={phone} interview={interview}
-                onInfoChange={onInfoChange}
-                onCheckChange={handleCheck}
-            />
-            <ChangePageButton
-                prev={true} next={true} submit={false}
-                onClickPrev={() => setIndex(index - 1)}
-                onClickNext={checkSecondForm}
-            />
-            </>
+            {index === 1
+                && <>
+                    <RecruitSecondPage
+                        email={email} name={name} gender={gender} university={university} major={major} minor={minor}
+                        course={course} level={level} address={address} phone={phone} interview={interview}
+                        onInfoChange={onInfoChange}
+                        onCheckChange={handleCheck}
+                    />
+                    <ChangePageButton
+                        prev={true} next={true} submit={false}
+                        onClickPrev={() => setIndex(index - 1)}
+                        onClickNext={checkSecondForm}
+                    />
+                </>
             }
-            { index === 2
-            && <>
-            <RecruitThirdPage
-                q1_introduce={q1_introduce} q2_experience={q2_experience} q3_idea={q3_idea}
-                q4_performance={q4_performance} q5_patience={q5_patience} q6_plan={q6_plan}
-                setIntroduce={setIntroduce} setExperience={setExperience} setIdea={setIdea}
-                setPerformance={setPerformance} setPatience={setPatience} setPlan={setPlan}
-            />
-            <ChangePageButton
-                prev={true} next={true} submit={false}
-                onClickPrev={() => setIndex(index - 1)}
-                onClickNext={checkThirdForm}
-            />
-            </>
+            {index === 2
+                && <>
+                    <RecruitThirdPage
+                        q1_introduce={q1_introduce} q2_experience={q2_experience} q3_idea={q3_idea}
+                        q4_performance={q4_performance} q5_patience={q5_patience} q6_plan={q6_plan}
+                        setIntroduce={setIntroduce} setExperience={setExperience} setIdea={setIdea}
+                        setPerformance={setPerformance} setPatience={setPatience} setPlan={setPlan}
+                    />
+                    <ChangePageButton
+                        prev={true} next={true} submit={false}
+                        onClickPrev={() => setIndex(index - 1)}
+                        onClickNext={checkThirdForm}
+                    />
+                </>
             }
-            { index === 3
-            && <>
-            <RecruitLastPage
-                name={name} doyouknowpiro={doyouknowpiro} filename={filename} status={status}
-                doyouknowValue={doyouknowValue}
-                setFilename={setFilename}
-                setStatus={setStatus}
-                handleChange={handleDoYouKnow}
-                setDoyouknowValue={setDoyouknowValue}
-            />
-            <ChangePageButton
-                prev={true} next={false} submit={true}
-                onClickPrev={() => setIndex(index - 1)}
-            />
-            </>
+            {index === 3
+                && <>
+                    <RecruitLastPage
+                        name={name} doyouknowpiro={doyouknowpiro} filename={filename} fileInfo={fileInfo}
+                        status={status} doyouknowValue={doyouknowValue}
+                        setFilename={setFilename}
+                        setFileInfo={setFileInfo}
+                        setStatus={setStatus}
+                        setDoyouknowpiro={setDoyouknowpiro}
+                        setDoyouknowValue={setDoyouknowValue}
+                    />
+                    <ChangePageButton
+                        prev={true} next={false} submit={true}
+                        onClickPrev={() => setIndex(index - 1)}
+                    />
+                </>
             }
-            { loading && <Loading /> }
+            {loading && <Loading />}
         </StyledRecruitForm>
     )
 }

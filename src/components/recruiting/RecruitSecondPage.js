@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { QuestionDiv } from '../QuestionDiv'
 import { RadioInput, RadioHorizontalInput, TextInput, CheckBox } from '../Input'
@@ -16,28 +16,19 @@ const RadioHorizontalWrapper = (props) => {
 }
 
 export const RecruitSecondPage = (props) => {
-	const [email, setEmail] = useState(props.email)
-	const [name, setName] = useState(props.name)
-	const [university, setUniversity] = useState(props.university)
-	const [major, setMajor] = useState(props.major)
-	const [minor, setMinor] = useState(props.minor)
-	const [address, setAddress] = useState(props.address)
-	const [phone, setPhone] = useState(props.phone)
-	const [interview, setInterview] = useState(props.interview)
-
 	const handleChange = (event) => {
 		props.onInfoChange(event.target.name, event.target.value)
 	}
 	const handleCheck = (event) => {
 		const value = event.target.value
 		const checked = event.target.checked
-		let newInterview = new Set(interview)
+		let newInterview = new Set(props.interview)
 		if(checked) {
 			newInterview.add(value)
-			setInterview(newInterview)
-		} else if(!checked && interview.has(value)) {
+			props.onInfoChange('interview', newInterview)
+		} else if(!checked && props.interview.has(value)) {
 			newInterview.delete(value)
-			setInterview(newInterview)
+			props.onInfoChange('interview', newInterview)
 		}
 		props.onCheckChange(value, checked)
 	}
@@ -51,14 +42,11 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="email"
-					value={email}
+					value={props.email}
 					maxLength={30}
 					required="required"
 					placeholder="pirogramming.official@gmail.com"
-					onChange={event => {
-						setEmail(event.target.value)
-						handleChange(event)
-					}}
+					onChange={handleChange}
 				/>
 			</QuestionDiv>
 			<QuestionDiv
@@ -67,14 +55,11 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="name"
-					value={name}
+					value={props.name}
 					maxLength={8}
 					required="required"
 					placeholder="홍길동"
-					onChange={event => {
-						setName(event.target.value)
-						handleChange(event)
-					}}
+					onChange={handleChange}
 				/>
 			</QuestionDiv>
 			<QuestionDiv
@@ -104,14 +89,11 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="university"
-					value={university}
+					value={props.university}
 					maxLength={20}
 					required="required"
 					placeholder="한국대학교"
-					onChange={event => {
-						setUniversity(event.target.value)
-						handleChange(event)
-					}}
+					onChange={handleChange}
 				/>
 			</QuestionDiv>
 			<QuestionDiv
@@ -120,14 +102,11 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="major"
-					value={major}
+					value={props.major}
 					maxLength={44}
 					required="required"
 					placeholder="한국어학과"
-					onChange={event => {
-						setMajor(event.target.value)
-						handleChange(event)
-					}}
+					onChange={handleChange}
 				/>
 			</QuestionDiv>
 			<QuestionDiv
@@ -138,14 +117,11 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="minor"
-					value={minor}
+					value={props.minor}
 					maxLength={44}
 					required="required"
 					placeholder="컴퓨터공학과"
-					onChange={event => {
-						setMinor(event.target.value)
-						handleChange(event)
-					}}
+					onChange={handleChange}
 				/>
 			</QuestionDiv>
 			<QuestionDiv
@@ -275,14 +251,11 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="address"
-					value={address}
+					value={props.address}
 					maxLength={298}
 					required="required"
 					placeholder="경기도 안양시 동안구"
-					onChange={event => {
-						setAddress(event.target.value)
-						handleChange(event)
-					}}
+					onChange={handleChange}
 				/>
 			</QuestionDiv>
 			<QuestionDiv
@@ -291,13 +264,12 @@ export const RecruitSecondPage = (props) => {
 				<TextInput
 					type="text"
 					name="phone"
-					value={phone}
+					value={props.phone}
 					maxLength={20}
 					required="required"
 					placeholder="010-0000-0000"
 					onChange={event => {
-						event.target.value = authoHyphen(event.target);
-						setPhone(event.target.value)
+						event.target.value = authoHyphen(event.target)
 						handleChange(event)
 					}}
 				/>
@@ -309,9 +281,9 @@ export const RecruitSecondPage = (props) => {
 				<CheckBox
 					name="interview"
 					value="토요일 오전"
-					checked={interview.has("토요일 오전")}
+					checked={props.interview.has("토요일 오전")}
 					onChange={event => {
-						handleCheck(event)
+						props.onCheckChange(event.target.value, props.interview.has("토요일 오전"))
 					}}
 				>
 					{INTERVIEW_SAT} 토요일 오전
@@ -319,9 +291,9 @@ export const RecruitSecondPage = (props) => {
 				<CheckBox
 					name="interview"
 					value="토요일 오후"
-					checked={interview.has("토요일 오후")}
+					checked={props.interview.has("토요일 오후")}
 					onChange={event => {
-						handleCheck(event)
+						props.onCheckChange(event.target.value, props.interview.has("토요일 오후"))
 					}}
 				>
 					{INTERVIEW_SAT} 토요일 오후
@@ -329,9 +301,9 @@ export const RecruitSecondPage = (props) => {
 				<CheckBox
 					name="interview"
 					value="일요일 오전"
-					checked={interview.has("일요일 오전")}
+					checked={props.interview.has("일요일 오전")}
 					onChange={event => {
-						handleCheck(event)
+						props.onCheckChange(event.target.value, props.interview.has("일요일 오전"))
 					}}
 				>
 					{INTERVIEW_SUN} 일요일 오전
@@ -339,9 +311,9 @@ export const RecruitSecondPage = (props) => {
 				<CheckBox
 					name="interview"
 					value="일요일 오후"
-					checked={interview.has("일요일 오후")}
+					checked={props.interview.has("일요일 오후")}
 					onChange={event => {
-						handleCheck(event)
+						props.onCheckChange(event.target.value, props.interview.has("일요일 오후"))
 					}}
 				>
 					{INTERVIEW_SUN} 일요일 오후
