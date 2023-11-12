@@ -29,6 +29,7 @@ export default function useForm() {
 
   const [filename, setFilename] = useState('')
   const [fileInfo, setFileInfo] = useState()
+  const [fileContent, setFileContent] = useState('')
   const [status, setStatus] = useState('')
   const [doyouknowpiro, setDoyouknowpiro] = useState('')
   const [doyouknowValue, setDoyouknowValue] = useState('')
@@ -122,6 +123,7 @@ export default function useForm() {
     q6_plan,
     filename,
     fileInfo,
+    fileContent,
     status,
     doyouknowpiro,
     doyouknowValue,
@@ -150,6 +152,7 @@ export default function useForm() {
     setPlan,
     setFilename,
     setFileInfo,
+    setFileContent,
     setStatus,
     setDoyouknowpiro,
     setDoyouknowValue,

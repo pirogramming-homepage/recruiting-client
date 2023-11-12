@@ -21,13 +21,11 @@ export const RecruitLastPage = (props) => {
 
 * 만약 업로드 파일에 오류가 있다면 채점할 때 불이익을 받을 수 있으니 유의해주세요`
 
-    const [fileContent, setFileContent] = useState('')
-
     const onClickUpload = (event) => {
         event.target.value = null
         props.setFilename('')
         props.setStatus('')
-        setFileContent('')
+        props.setFileContent('')
     }
 
     const uploadFile = async (event) => {
@@ -49,7 +47,7 @@ export const RecruitLastPage = (props) => {
         console.log(textReader)
         textReader.onload = () => {
             if(textReader.readyState === 2) {
-                setFileContent(textReader.result)
+                props.setFileContent(textReader.result)
             }
         }
         textReader.readAsText(event.target.files[0], 'utf-8')
@@ -82,9 +80,9 @@ export const RecruitLastPage = (props) => {
                         status={props.status}
                     />
                 </Wrapper>
-                {fileContent &&
+                {props.fileContent &&
                     <CodeP>
-                        {fileContent}
+                        {props.fileContent}
                     </CodeP>
                 }
             </QuestionDiv>
