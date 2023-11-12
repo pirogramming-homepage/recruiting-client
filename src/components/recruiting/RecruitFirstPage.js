@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { COLORS, WORKSHOP_DATE, FULL_SCHEDULE, INTERVIEW_DATE, LEVEL, SERVER_URL } from '../Variables'
 import { QuestionDiv } from '../QuestionDiv'
-import { RadioInput } from '../Input'
+import { RadioInput, TextInput } from '../Input'
 import PageContainer from '../PageContainer'
 
 export const RecruitFirstPage = (props) => {
 	const handleRadioChange = (event) => {
-		props.handleChange(event.target.name, event.target.value);
+		props.handleChange(event.target.name, event.target.value)
 	}
+	const [reasonDisabled, setReasonDisabled] = useState(true)
+	const [reasonPlaceHolder, setReasonPlaceHolder] = useState('')
+
 	return (
 		<PageContainer>
 			<QuestionDiv
@@ -46,7 +49,12 @@ export const RecruitFirstPage = (props) => {
 					value={true}
 					required="required"
 					checked={props.workshop === 'true'}
-					onChange={handleRadioChange}
+					onChange={() => {
+						props.setWorkshop('true')
+						props.setReason('')
+						setReasonDisabled(true)
+						setReasonPlaceHolder('')
+					}}
 				>
 					예
 				</RadioInput>
@@ -55,10 +63,24 @@ export const RecruitFirstPage = (props) => {
 					name="workshop"
 					value={false}
 					checked={props.workshop === 'true' ? false : props.workshop !== ''}
-					onChange={handleRadioChange}
+					onChange={() => {
+						props.setWorkshop('false')
+						setReasonDisabled(false)
+						setReasonPlaceHolder('기타 사유를 입력하세요')
+					}}
 				>
 					아니오
 				</RadioInput>
+				<TextInput
+					type="text"
+					name="reason"
+					value={props.reason}
+					maxLength={48}
+					required={reasonDisabled}
+					placeholder={reasonPlaceHolder}
+					onChange={(event) => props.setReason(event.target.value)}
+					disabled={reasonDisabled}
+				/>
 			</QuestionDiv>
 			<QuestionDiv
 				header="개인정보 이용동의"
