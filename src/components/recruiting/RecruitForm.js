@@ -54,6 +54,7 @@ export const RecruitForm = (props) => {
         q6_plan,
         filename,
         fileInfo,
+        fileContent,
         status,
         doyouknowpiro,
         doyouknowValue,
@@ -82,6 +83,7 @@ export const RecruitForm = (props) => {
         setPlan,
         setFilename,
         setFileInfo,
+        setFileContent,
         setStatus,
         setDoyouknowpiro,
         setDoyouknowValue,
@@ -118,6 +120,7 @@ export const RecruitForm = (props) => {
 
             coding_test_fileDest: filename,
             coding_test_file: fileInfo,
+            coding_test_content: fileContent,
             doyouknowpiro: doyouknowpiro,
             doyouknowValue: doyouknowValue,
             piro_level: LEVEL,
@@ -260,10 +263,12 @@ export const RecruitForm = (props) => {
             {index === 3
                 && <>
                     <RecruitLastPage
-                        name={name} doyouknowpiro={doyouknowpiro} filename={filename} fileInfo={fileInfo}
+                        name={name} doyouknowpiro={doyouknowpiro}
+                        filename={filename} fileInfo={fileInfo} fileContent={fileContent}
                         status={status} doyouknowValue={doyouknowValue}
                         setFilename={setFilename}
                         setFileInfo={setFileInfo}
+                        setFileContent={setFileContent}
                         setStatus={setStatus}
                         setDoyouknowpiro={setDoyouknowpiro}
                         setDoyouknowValue={setDoyouknowValue}
