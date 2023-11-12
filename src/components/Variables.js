@@ -7,7 +7,7 @@ export const COLORS = {
 
 export const SERVER_URL =
 	process.env.NODE_ENV === 'production'
-	? '//hello.pirogramming-recruit.p-e.kr/api'
+	? '/api'
 	: '//localhost:3333/api';
 
 /* 서류 변수 수정 */
