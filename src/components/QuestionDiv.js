@@ -61,6 +61,8 @@ const StyledDesc = styled.h3`
 font-weight: 400;
 font-size: 1rem;
 line-height: 1.5rem;
+word-break: keep-all;
+white-space: pre-line;
 
 @media (max-width: 786px) {
     font-size: 0.8rem;

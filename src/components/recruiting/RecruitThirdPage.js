@@ -4,15 +4,18 @@ import { QuestionDiv } from '../QuestionDiv'
 import { TextAreaInput } from '../Input'
 import { SEASON } from '../Variables'
 import PageContainer from '../PageContainer'
+import GapV from '../GapV'
 
 export const RecruitThirdPage = (props) => {
     return (
         <PageContainer>
             정해진 글자 수 조건에 유념해서 작성해주세요.
 
+            <GapV />
+
             <QuestionDiv
-                header="자기소개 및 지원동기와 목표 (공백 포함 700자 이히)"
-                desc="당신은 어떤 사람인가요? 장단점은 무엇인가요? 피로그래밍에 지원하게 된 동기와 피로그래밍을 통해 얻고 싶은 것에 대해 함께 설명해주세요."
+                header="본인의 가치관, 성격 등을 포함한 자기소개 (700자 이내)"
+                desc="*장단점은 무엇인가요? 해당 장단점으로 피로그래밍 활동 속에서 기여 할 수 있는 점은 무엇인가요? 피로그래밍에 지원하게 된 동기와 피로그래밍 활동을 통해 얻고자 하는 것에 대해 함께 작성해 주시면 더 좋습니다."
             >
                 <TextAreaInput
                     required="required"
