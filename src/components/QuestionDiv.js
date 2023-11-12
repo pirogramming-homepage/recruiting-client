@@ -27,10 +27,11 @@ border-radius: 2rem;
 }
 
 @media (max-width: 768px) {
-    width: 80%;
-    padding: 1rem 2rem;
+    width: 90%;
+    padding: 0 0.8rem;
     font-size: 1rem;
     line-height: 1.2rem;
+    border-radius: 1rem;
 }
 `
 
@@ -39,8 +40,9 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 margin: 1rem 0;
+position: relative;
 
-@media (max-width: 1300px) {
+@media (max-width: 786px) {
     flex-direction: column;
 }
 `
@@ -50,10 +52,12 @@ font-weight: 600;
 font-size: 1.3rem;
 line-height: 2rem;
 margin: 0;
+width: 90%;
 
-@media (max-width: 768px) {
+@media (max-width: 786px) {
     font-size: 1rem;
     line-height: 1.2rem;
+    width: 100%;
 }
 `
 
@@ -76,4 +80,17 @@ flex-direction: column;
 `
 const RequiredQuestion = styled.span`
 color: red;
+@media (max-width: 1300px) {
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+@media (max-width: 786px) {
+    font-size: 0.7rem;
+    padding-top: 0.3rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
 `
