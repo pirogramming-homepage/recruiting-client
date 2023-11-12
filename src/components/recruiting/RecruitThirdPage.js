@@ -4,11 +4,14 @@ import { QuestionDiv } from '../QuestionDiv'
 import { TextAreaInput } from '../Input'
 import { SEASON } from '../Variables'
 import PageContainer from '../PageContainer'
+import GapV from '../GapV'
 
 export const RecruitThirdPage = (props) => {
     return (
         <PageContainer>
             정해진 글자 수 조건에 유념해서 작성해주세요.
+
+            <GapV />
 
             <QuestionDiv
                 header="자기소개 및 지원동기와 목표 (공백 포함 700자 이히)"
