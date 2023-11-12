@@ -14,8 +14,8 @@ export const RecruitThirdPage = (props) => {
             <GapV />
 
             <QuestionDiv
-                header="본인의 가치관, 성격 등을 포함한 자기소개 (700자 이내)"
-                desc="*장단점은 무엇인가요? 해당 장단점으로 피로그래밍 활동 속에서 기여 할 수 있는 점은 무엇인가요? 피로그래밍에 지원하게 된 동기와 피로그래밍 활동을 통해 얻고자 하는 것에 대해 함께 작성해 주시면 더 좋습니다."
+                header="본인의 가치관, 성격 등을 포함한 자기소개 (공백포함 500자 이내)"
+                desc="자신의 장단점은 무엇인가요? 해당 장단점으로 피로그래밍 활동 속에서 기여 할 수 있는 점은 무엇인가요?"
             >
                 <TextAreaInput
                     required="required"
@@ -26,8 +26,8 @@ export const RecruitThirdPage = (props) => {
                 </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
-                header="프로그래밍 경험 및 수준, 학습계획 (공백 포함 500자 이하)"
-                desc="이전에 프로그래밍을 접하거나 배워본 경험이 있으신가요? 있다면, 어떠한 언어를 어느 정도 공부하셨나요? 없다면, 프로그래밍을 어떻게 알게 되었고, 어떤 분야에 관심이 있으신가요? 프로그래밍과 관련하여 앞으로의 공부 계획이 있으시다면 설명해주세요."
+                header="지원동기와 목표(공백포함 500자 이내)"
+                desc="피로그래밍에 지원하게 된 동기와 왜 웹개발을 선택했는지, 피로그래밍 활동을 통해 얻고자 하는 것에 대해 함께 작성해 주시면 더 좋습니다."
             >
                 <TextAreaInput
                     required="required"
@@ -38,8 +38,7 @@ export const RecruitThirdPage = (props) => {
                 </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
-                header="만들고 싶은 웹 서비스 (공백 포함 350자 이하)"
-                desc="피로그래밍 세션 후반부에는 팀을 짜서 직접 웹 사이트를 만들어 봅니다. 피로그래밍에서 만들어 보고 싶은 웹 서비스가 있으신가요? 있다면, 만들고자 하는 웹 서비스에 대해 자유롭게 설명해주세요."
+                header="평소에 관심을 가졌던 웹 서비스가 있나요? 혹은 만들고 싶은 웹 서비스에 대해서 작성해주세요. (공백포함 350자 이내)"
             >
                 <TextAreaInput
                     required="required"
@@ -50,8 +49,8 @@ export const RecruitThirdPage = (props) => {
                 </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
-                header="협업 또는 팀플 경험 (공백 포함 500자 이하)"
-                desc="팀원들과 협업을 해본 경험이 있으신가요? 있다면 팀에 어떻게 기여했나요? 또한 협업 과정에서 당신의 소통방식에 대해 설명해주세요. (프로그래밍과 관련 없는 협업 또는 팀플 경험이어도 괜찮습니다.)"
+                header="협업을 진행하며 함께 성장한 경험에 대해 이야기해주세요. 자신이 팀 내에서 맡았던 역할과 협업 과정을 통해 배우고 느낀 점에 대해 구체적으로 설명해주세요. 웹 개발 경험이 아니어도 좋습니다. (공백포함 500자 이내)"
+                desc="협업과정에서 자신의 강점/약점은 무엇이라고 느꼈는지 적어주시면 더 좋습니다."
             >
                 <TextAreaInput
                     required="required"
@@ -62,8 +61,8 @@ export const RecruitThirdPage = (props) => {
                 </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
-                header="무언가를 끝까지, 꾸준히 해낸 경험 (공백 포함 500자 이하)"
-                desc="계획했던 일을 끝까지 해내거나 혹은 꾸준히 해본 경험이 있으신가요? 있다면 그 과정에서 어려운 점은 무엇이었고, 어떻게 극복하셨나요? 혹은 결과는 어땠고, 경험을 통해 무엇을 얻었는지 자유롭게 설명해주세요."
+                header="목표를 정하고 노력한 경험 (공백포함 500자 이내)"
+                desc="도전 계기와 도전 과정의 어려움 및 극복/노력 과정을 구체적으로 설명해주세요"
             >
                 <TextAreaInput
                     required="required"
@@ -74,7 +73,7 @@ export const RecruitThirdPage = (props) => {
                 </TextAreaInput>
             </QuestionDiv>
             <QuestionDiv
-                header="방학계획 (자유형식)"
+                header="방학 계획 및 학습계획 (자유형식)"
                 desc={`이번 ${SEASON} 계획이 어떻게 되나요? 학습 계획 혹은 이외의 계획이 있다면 자유롭게 작성해주세요.`}
             >
                 <TextAreaInput

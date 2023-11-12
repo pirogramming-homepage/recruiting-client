@@ -284,7 +284,7 @@ export const RecruitForm = (props) => {
     )
 }
 
-const StyledRecruitForm = styled.form`
+export const StyledRecruitForm = styled.form`
 padding: 1rem 2rem 3rem 2rem;
 @font-face {
     font-family: 'NanumSquareNeo-Variable';
@@ -294,4 +294,7 @@ padding: 1rem 2rem 3rem 2rem;
 }
 font-family: 'NanumSquareNeo-Variable';
 background-color: 'white';
+@media (max-width: 768px) {
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+}
 `
