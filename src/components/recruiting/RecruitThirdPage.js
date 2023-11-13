@@ -19,7 +19,7 @@ export const RecruitThirdPage = (props) => {
             >
                 <TextAreaInput
                     required="required"
-                    maxLength={700}
+                    maxLength={500}
                     onChange={event => props.setIntroduce(event.target.value)}
                     value={props.q1_introduce}
                 >
@@ -42,7 +42,7 @@ export const RecruitThirdPage = (props) => {
             >
                 <TextAreaInput
                     required="required"
-                    maxLength={400}
+                    maxLength={350}
                     onChange={event => props.setIdea(event.target.value)}
                     value={props.q3_idea}
                 >
