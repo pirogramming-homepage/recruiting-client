@@ -11,6 +11,13 @@ export const SERVER_URL =
 	: '//localhost:3333/api';
 
 /* 서류 변수 수정 */
+// 리크루팅 시작, 종료 날짜
+export const RECRUIT_YEAR = 2023
+export const RECRUIT_START_MONTH = 11
+export const RECRUIT_START_DAY = 21
+export const RECRUIT_END_MONTH = 12
+export const RECRUIT_END_DAY = 2
+
 // firstPage
 export const WORKSHOP_DATE = "12/22"
 export const INTERVIEW_DATE = "12/09 (토) or 12/10 (일)"
