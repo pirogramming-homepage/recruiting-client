@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
-import { COLORS, LEVEL, SERVER_URL } from '../Variables'
+import { COLORS, LEVEL, RECRUIT_END_DAY, RECRUIT_END_MONTH, RECRUIT_START_DAY, RECRUIT_START_MONTH, RECRUIT_YEAR, SERVER_URL } from '../Variables'
 import { PiroHeader } from '../PiroHeader'
 import { ChangePageButton } from '../Button'
 import { RecruitFirstPage } from './RecruitFirstPage'
@@ -10,6 +10,7 @@ import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
 import { Loading } from '../Loading'
 import useForm from './use-form'
+import dateCheck from '../utils'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -92,6 +93,22 @@ export const RecruitForm = (props) => {
         handleCheck,
     } = useForm()
 
+    // 접속 시간 리크루팅이 종료되었다면
+    if(dateCheck() == 'before') {
+        return (
+            <StyledNullContainer>
+                {`아직 피로그래밍 ${LEVEL}기 리크루팅을 진행하지 않습니다!`}
+            </StyledNullContainer>
+        )
+    }
+    else if(dateCheck() == 'after') {
+        return (
+            <StyledNullContainer>
+                {`피로그래밍 ${LEVEL}기 리크루팅이 종료되었습니다!`}
+            </StyledNullContainer>
+        )
+    }
+
     const tryFormSubmit = async () => {
         const body = {
             attend: attend,
@@ -162,7 +179,11 @@ export const RecruitForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (filename === '' || doyouknowpiro === '') {
+        if(dateCheck() == 'before') {
+            window.alert('아직 리크루팅 기간이 아닙니다!')
+        } else if(dateCheck() == 'after') {
+            window.alert('리크루팅이 종료되어 제출할 수 없습니다!')
+        } else if (filename === '' || doyouknowpiro === '') {
             window.alert('입력하지 않은 항목이 있습니다.')
         } else {
             if (window.confirm('제출하시겠습니까? 정보를 정확하게 기입했는지 다시 한 번 확인해 주세요.')) {
@@ -296,5 +317,25 @@ font-family: 'NanumSquareNeo-Variable';
 background-color: 'white';
 @media (max-width: 768px) {
     padding: 0.5rem 0.5rem 1rem 0.5rem;
+}
+`
+
+const StyledNullContainer = styled.form`
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 2rem;
+height: 100vh;
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+font-family: 'NanumSquareNeo-Variable';
+background-color: 'white';
+@media (max-width: 768px) {
+    font-size: 4vw;
+    line-height: 6vw;
 }
 `
