@@ -34,7 +34,7 @@ export const fetchGetApi = async (url) => {
 	}
 }
 
-export default function dateCheck() {
+export function dateCheck() {
   // 접속 시간 리크루팅이 종료되었다면
   const now = new Date()
   const recruitStartDate = new Date(RECRUIT_YEAR, RECRUIT_START_MONTH - 1, RECRUIT_START_DAY)
@@ -49,4 +49,30 @@ export default function dateCheck() {
     return 'after' // 리크루팅 종료 후
   }
 	return 'ok'
+}
+
+export async function addApplicantToHome(
+	name,
+	phone,
+	level,
+	major,
+) {
+	const body = {
+		name: name,
+		phone: phone,
+		level: level,
+		major: major,
+	}
+	const res = await fetch('https://pirogramming.com/recruit/api/add_applicant/', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(body)
+	});
+
+	if (res.ok) {
+		const result = await res.json()
+		return result;
+	}
 }
