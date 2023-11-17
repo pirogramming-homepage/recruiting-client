@@ -10,7 +10,7 @@ import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
 import { Loading } from '../Loading'
 import useForm from './use-form'
-import { fetchPostApi, dateCheck } from '../utils'
+import { fetchPostApi, dateCheck, addApplicantToHome } from '../utils'
 
 const scrollTop = () => {
     window.scrollTo({
