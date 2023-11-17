@@ -16,7 +16,8 @@ export const fetchPostApi = async (url, body) => {
 	});
 
 	if (res.ok) {
-		return res;
+		const result = await res.json()
+		return result;
 	}
 }
 

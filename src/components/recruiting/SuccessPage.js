@@ -15,14 +15,23 @@ export const SuccessPage = (props) => {
             <PiroHeader />
             <Checkmark size='xxLarge' />
             <Header>제출이 정상적으로 완료되었습니다</Header>
-            <Description>작성하신 이메일 { state?.emailAddress } 로 응답 사본이 전송되었습니다</Description>
-            <Description>피로그래밍에 지원해 주셔서 감사합니다!</Description>
+            {state?.message === '' ? (
+                <>
+                    <Description>작성하신 이메일 { state?.emailAddress } 로 응답 사본이 전송되었습니다</Description>
+                    <Description>피로그래밍에 지원해 주셔서 감사합니다!</Description>
+                </>
+            ):(
+                <>
+                    <Description>{ state?.message }</Description>
+                    <Description>피로그래밍에 지원해 주셔서 감사합니다!</Description>
+                </>
+            )}
             <StyledDiv>
             <a href="https://pirogramming.com/">
                 <TextButton
                     type="button"
                     buttonContent="Pirogramming"
-                />
+                    />
             </a>
             </StyledDiv>
         </StyledRecruitForm>
