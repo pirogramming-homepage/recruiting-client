@@ -1,4 +1,5 @@
-import { RECRUIT_END_DAY, RECRUIT_END_MONTH, RECRUIT_START_DAY, RECRUIT_START_MONTH, RECRUIT_YEAR, SERVER_URL } from './Variables'
+import { HOME_SERVER_URL, RECRUIT_END_DAY, RECRUIT_END_MONTH, RECRUIT_START_DAY, RECRUIT_START_MONTH, RECRUIT_YEAR, SERVER_URL } from './Variables'
+import axios from 'axios';
 
 export const authoHyphen = (target) => {
 	return target.value
@@ -51,23 +52,39 @@ export function dateCheck() {
 	return 'ok'
 }
 
+let _csrfToken = null;
+
+async function getCsrfToken() {
+  if (_csrfToken === null) {
+    const response = await fetch(`${HOME_SERVER_URL}/recruit/api/csrf/`, {
+      credentials: 'include',
+    });
+    const data = await response.json();
+    _csrfToken = data.csrfToken;
+  }
+  return _csrfToken;
+}
+
 export async function addApplicantToHome(
-	name,
-	phone,
-	level,
-	major,
+	_name,
+	_phone,
+	_level,
+	_major
 ) {
 	const body = {
-		name: name,
-		phone: phone,
-		level: level,
-		major: major,
+		name: _name,
+		phone: _phone,
+		level: _level,
+		major: _major
 	}
-	const res = await fetch('https://pirogramming.com/recruit/api/add_applicant/', {
+	console.log('body data...', body);
+	const res = await fetch(`${HOME_SERVER_URL}/recruit/api/add_applicant/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			'X-CSRFToken': await getCsrfToken()
 		},
+		credentials: 'include',
 		body: JSON.stringify(body)
 	});
 

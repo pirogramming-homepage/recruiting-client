@@ -142,7 +142,9 @@ export const RecruitForm = (props) => {
             doyouknowValue: doyouknowValue,
             piro_level: LEVEL,
         }
-
+        
+        // 홈페이지에 정보 저장
+        // const add_result = await addApplicantToHome(name, phone, level, major)
         // 코딩테스트 파일 저장
         const formData = new FormData()
         formData.append('coding-test', fileInfo)
@@ -156,14 +158,16 @@ export const RecruitForm = (props) => {
         const data_response = await fetchPostApi('/recruit/save_form', body)
         // 사본 이메일 전송
         const email_response = await fetchPostApi('/recruit/send_mail', body)
-        // 홈페이지에 정보 저장
-        const add_result = await addApplicantToHome(name, phone, level, major)
 
         console.log('file_res_json', file_res_json.status)
         console.log('data_res_json', data_response.status)
         console.log('email_res_json', email_response.status)
-        console.log('add_result', add_result.status)
+        // console.log('add_result', add_result.status)
 
+        if(file_res_json.status == true && data_response.status == 'success' && email_response.status == true) return 'success'
+        else if(file_res_json.status == true && data_response.status == 'success' && email_response.status == false) return 'email false'
+        else return 'fail'
+        /*
         if(add_result.status == 'saved') {
             if(file_res_json.status == true && data_response.status == 'success' && email_response.status == true) return 'success'
             else if(file_res_json.status == true && data_response.status == 'success' && email_response.status == false) return 'email false'
@@ -171,6 +175,7 @@ export const RecruitForm = (props) => {
         } else {
             return 'fail'
         }
+        */
     }
 
     const handleSubmit = async (e) => {
