@@ -10,7 +10,7 @@ import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
 import { Loading } from '../Loading'
 import useForm from './use-form'
-import dateCheck from '../utils'
+import dateCheck, { fetchPostApi } from '../utils'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -147,34 +147,22 @@ export const RecruitForm = (props) => {
         const formData = new FormData()
         formData.append('coding-test', fileInfo)
         formData.append('name', name)
-        const response = await fetch(`${SERVER_URL}/recruit/save_file`, {
+        const file_response = await fetch(`${SERVER_URL}/recruit/save_file`, {
             method: 'POST',
             body: formData
         })
-        const {status} = await response.json();
-        if(status === true) {
-            setStatus('\0\0파일 저장 완료 ✅')
-        } else {
-            setStatus('\0\0파일 저장 실패 💔')
-        }
+        const file_res_json = await file_response.json();
         // 데이터 저장
-        await fetch(`${SERVER_URL}/recruit/save_form`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
+        const data_response = await fetchPostApi('/recruit/save_form', body);
         // 사본 이메일 전송
-        const result = await fetch(`${SERVER_URL}/recruit/send_mail`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
-        })
+        const email_response = await fetchPostApi('/recruit/send_mail', body)
+        console.log('file_res_json', file_res_json.status)
+        console.log('data_res_json', data_response.status)
+        console.log('email_res_json', email_response.status)
 
-        return result
+        if(file_res_json.status == true && data_response.status == 'success' && email_response.status == true) return 'success';
+        else if(file_res_json.status == true && data_response.status == 'success' && email_response.status == false) return 'email false';
+        else return 'fail';
     }
 
     const handleSubmit = async (e) => {
@@ -192,10 +180,13 @@ export const RecruitForm = (props) => {
 
                 const result = await tryFormSubmit();
 
-                if (result.status == false) {
+                if (result == 'fail') {
                     navigate("/fail")
+                } else if (result == 'email false') {
+                    navigate("/success", { state: { emailAddress: email, message: '현재 접속량이 많아 응답 사본 전송이 지연되고 있으나 서류는 안전히 저장되었습니다! 잠시만 기다려 주세요.'}})
+                } else {
+                    navigate("/success", { state: { emailAddress: email, message: '' } })
                 }
-                navigate("/success", { state: { emailAddress: email } })
             }
         }
     }

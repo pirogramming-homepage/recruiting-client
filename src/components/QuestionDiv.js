@@ -80,8 +80,8 @@ flex-direction: column;
 `
 const RequiredQuestion = styled.span`
 color: red;
+font-size: 0.8rem;
 @media (max-width: 1300px) {
-    font-size: 0.8rem;
     display: flex;
     justify-content: right;
     align-items: center;
