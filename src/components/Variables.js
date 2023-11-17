@@ -10,6 +10,11 @@ export const SERVER_URL =
 	? '/api'
 	: '//localhost:3333/api';
 
+export const HOME_SERVER_URL =
+	process.env.NODE_ENV === 'production'
+	? '//pirogramming.com'
+	: '//localhost:8000';
+
 /* 서류 변수 수정 */
 // 리크루팅 시작, 종료 날짜
 export const RECRUIT_YEAR = 2023

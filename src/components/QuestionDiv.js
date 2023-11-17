@@ -39,6 +39,7 @@ const Wapper = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+align-items: start;
 margin: 1rem 0;
 position: relative;
 
@@ -52,7 +53,7 @@ font-weight: 600;
 font-size: 1.3rem;
 line-height: 2rem;
 margin: 0;
-width: 90%;
+max-width: 85%;
 
 @media (max-width: 786px) {
     font-size: 1rem;
