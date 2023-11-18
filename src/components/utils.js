@@ -38,11 +38,18 @@ export const fetchGetApi = async (url) => {
 export function dateCheck() {
   // 접속 시간 리크루팅이 종료되었다면
   const now = new Date()
-  const recruitStartDate = new Date(RECRUIT_YEAR, RECRUIT_START_MONTH - 1, RECRUIT_START_DAY)
-  const recruitEndDate = new Date(RECRUIT_YEAR, RECRUIT_END_MONTH - 1, RECRUIT_END_DAY)
-	// console.log('now', now)
-	// console.log('recruitStartDate', recruitStartDate)
-	// console.log('recruitEndDate', recruitEndDate)
+  let recruitStartDate = new Date(RECRUIT_YEAR, RECRUIT_START_MONTH - 1, RECRUIT_START_DAY)
+  let recruitEndDate = new Date(RECRUIT_YEAR, RECRUIT_END_MONTH - 1, RECRUIT_END_DAY)
+	if(now.getTimezoneOffset() != -540) {
+		// 한국이 아닌 나라에서 접속하면
+		const timediff = (-540 + now.getTimezoneOffset()) / 60;
+		recruitStartDate = recruitStartDate.setHours(recruitStartDate.getHours() + timediff);
+		recruitEndDate = recruitEndDate.setHours(recruitEndDate.getHours() + timediff);
+		
+	}
+	console.log('now', now)
+	console.log('recruitStartDate', recruitStartDate)
+	console.log('recruitEndDate', recruitEndDate)
   if (now < recruitStartDate) {
     return 'before' // 리크루팅 시작 전
   }
@@ -50,46 +57,4 @@ export function dateCheck() {
     return 'after' // 리크루팅 종료 후
   }
 	return 'ok'
-}
-
-let _csrfToken = null;
-
-async function getCsrfToken() {
-  if (_csrfToken === null) {
-    const response = await fetch(`${HOME_SERVER_URL}/recruit/api/csrf/`, {
-      credentials: 'include',
-    });
-    const data = await response.json();
-    _csrfToken = data.csrfToken;
-  }
-  return _csrfToken;
-}
-
-export async function addApplicantToHome(
-	_name,
-	_phone,
-	_level,
-	_major
-) {
-	const body = {
-		name: _name,
-		phone: _phone,
-		level: _level,
-		major: _major
-	}
-	console.log('body data...', body);
-	const res = await fetch(`${HOME_SERVER_URL}/recruit/api/add_applicant/`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'X-CSRFToken': await getCsrfToken()
-		},
-		credentials: 'include',
-		body: JSON.stringify(body)
-	});
-
-	if (res.ok) {
-		const result = await res.json()
-		return result;
-	}
 }

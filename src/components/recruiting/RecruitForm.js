@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
-import { COLORS, LEVEL, RECRUIT_END_DAY, RECRUIT_END_MONTH, RECRUIT_START_DAY, RECRUIT_START_MONTH, RECRUIT_YEAR, SERVER_URL } from '../Variables'
+import { LEVEL, SERVER_URL } from '../Variables'
 import { PiroHeader } from '../PiroHeader'
 import { ChangePageButton } from '../Button'
 import { RecruitFirstPage } from './RecruitFirstPage'
@@ -10,7 +10,7 @@ import { RecruitThirdPage } from './RecruitThirdPage'
 import { RecruitLastPage } from './RecruitLastPage'
 import { Loading } from '../Loading'
 import useForm from './use-form'
-import { fetchPostApi, dateCheck, addApplicantToHome } from '../utils'
+import { fetchPostApi, dateCheck } from '../utils'
 
 const scrollTop = () => {
     window.scrollTo({
