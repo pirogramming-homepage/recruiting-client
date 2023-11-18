@@ -47,9 +47,9 @@ export function dateCheck() {
 		recruitEndDate = recruitEndDate.setHours(recruitEndDate.getHours() + timediff);
 		
 	}
-	console.log('now', now)
-	console.log('recruitStartDate', recruitStartDate)
-	console.log('recruitEndDate', recruitEndDate)
+	// console.log('now', now)
+	// console.log('recruitStartDate', recruitStartDate)
+	// console.log('recruitEndDate', recruitEndDate)
   if (now < recruitStartDate) {
     return 'before' // 리크루팅 시작 전
   }
