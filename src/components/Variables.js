@@ -31,9 +31,9 @@ export const LEVEL = 20
 export const SEASON = "겨울방학"
 
 // secondPage
-export const FIRST_RESULT = "12월 06일 23시 이후"
+export const FIRST_RESULT = "12월 06일"
 export const INTERVIEW_SAT = "12/09"
 export const INTERVIEW_SUN = "12/10"
 
 // lastPage
-export const CODING_TEST_LINK = "https://naver.com"
+export const CODING_TEST_LINK = "https://even-channel-ff2.notion.site/20-ef3769579cd64487a1f4f44102af86dc?pvs=4"
