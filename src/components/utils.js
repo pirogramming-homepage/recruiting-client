@@ -39,13 +39,12 @@ export function dateCheck() {
   // 접속 시간 리크루팅이 종료되었다면
   const now = new Date()
   let recruitStartDate = new Date(RECRUIT_YEAR, RECRUIT_START_MONTH - 1, RECRUIT_START_DAY)
-  let recruitEndDate = new Date(RECRUIT_YEAR, RECRUIT_END_MONTH - 1, RECRUIT_END_DAY)
+  let recruitEndDate = new Date(RECRUIT_YEAR, RECRUIT_END_MONTH - 1, RECRUIT_END_DAY, 23, 59, 0)
 	if(now.getTimezoneOffset() != -540) {
 		// 한국이 아닌 나라에서 접속하면
 		const timediff = (-540 + now.getTimezoneOffset()) / 60;
-		recruitStartDate = recruitStartDate.setHours(recruitStartDate.getHours() + timediff);
-		recruitEndDate = recruitEndDate.setHours(recruitEndDate.getHours() + timediff);
-		
+		recruitStartDate = new Date(recruitStartDate.setHours(recruitStartDate.getHours() + timediff));
+		recruitEndDate = new Date(recruitEndDate.setHours(recruitEndDate.getHours() + timediff));
 	}
 	// console.log('now', now)
 	// console.log('recruitStartDate', recruitStartDate)
