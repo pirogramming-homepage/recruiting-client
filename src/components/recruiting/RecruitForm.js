@@ -93,15 +93,20 @@ export const RecruitForm = (props) => {
         handleCheck,
     } = useForm()
 
+    const [isStart, setIsStart] = useState('before')
+    useEffect(() => {
+        setIsStart(dateCheck())
+    }, [])
+
     // 접속 시간 리크루팅이 종료되었다면
-    if(dateCheck() == 'before') {
+    if(isStart == 'before') {
         return (
             <StyledNullContainer>
                 {`아직 피로그래밍 ${LEVEL}기 리크루팅을 진행하지 않습니다!`}
             </StyledNullContainer>
         )
     }
-    else if(dateCheck() == 'after') {
+    else if(isStart == 'after') {
         return (
             <StyledNullContainer>
                 {`피로그래밍 ${LEVEL}기 리크루팅이 종료되었습니다!`}
