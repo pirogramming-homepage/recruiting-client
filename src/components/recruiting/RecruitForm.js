@@ -11,6 +11,7 @@ import { RecruitLastPage } from './RecruitLastPage'
 import { Loading } from '../Loading'
 import useForm from './use-form'
 import { fetchPostApi, dateCheck } from '../utils'
+import useTimeCheck from '../use-timeCheck'
 
 const scrollTop = () => {
     window.scrollTo({
@@ -93,26 +94,15 @@ export const RecruitForm = (props) => {
         handleCheck,
     } = useForm()
 
-    const [isStart, setIsStart] = useState('before')
+    const {
+        isStart,
+        setIsStart,
+        timeCheck,
+    } = useTimeCheck()
     useEffect(() => {
-        setIsStart(dateCheck())
+        timeCheck()
+        //console.log(isStart)
     }, [])
-
-    // 접속 시간 리크루팅이 종료되었다면
-    if(isStart == 'before') {
-        return (
-            <StyledNullContainer>
-                {`아직 피로그래밍 ${LEVEL}기 리크루팅을 진행하지 않습니다!`}
-            </StyledNullContainer>
-        )
-    }
-    else if(isStart == 'after') {
-        return (
-            <StyledNullContainer>
-                {`피로그래밍 ${LEVEL}기 리크루팅이 종료되었습니다!`}
-            </StyledNullContainer>
-        )
-    }
 
     const tryFormSubmit = async () => {
         const body = {
@@ -232,6 +222,16 @@ export const RecruitForm = (props) => {
     }
 
     return (
+        <>
+        {isStart == 'before' ? (
+            <StyledNullContainer>
+                {`아직 피로그래밍 ${LEVEL}기 리크루팅을 진행하지 않습니다!`}
+            </StyledNullContainer>
+        ) : isStart == 'after' ? (
+            <StyledNullContainer>
+                {`피로그래밍 ${LEVEL}기 리크루팅이 종료되었습니다!`}
+            </StyledNullContainer>
+        ) : (
         <StyledRecruitForm onSubmit={handleSubmit} encType="multipart/form-data">
             <PiroHeader>{`${LEVEL}기 지원서`}</PiroHeader>
             {index === 0
@@ -298,7 +298,8 @@ export const RecruitForm = (props) => {
                 </>
             }
             {loading && <Loading />}
-        </StyledRecruitForm>
+        </StyledRecruitForm>)}
+        </>
     )
 }
 
