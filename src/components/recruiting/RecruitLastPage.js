@@ -48,7 +48,7 @@ export const RecruitLastPage = (props) => {
         textReader.onload = () => {
             if(textReader.readyState === 2) {
                 console.log(event.target.files[0])
-                if(event.target.files[0].type !== "text/x-python-script") {
+                if(!event.target.files[0].type.includes('python')) {
                     props.setFileContent(`제출하신 파일은 .py 파일이 아닙니다! 채점 시 불이익이 발생할 수 있습니다. 그대로 제출하시겠습니까?\n${textReader.result}`)
                 } else {
                     props.setFileContent(textReader.result)
