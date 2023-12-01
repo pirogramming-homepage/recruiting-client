@@ -29,6 +29,19 @@ export const RecruitLastPage = (props) => {
     }
 
     const uploadFile = async (event) => {
+        // 용량 확인
+        const limit = 1024 * 1024
+        const fileSize = event.target.files[0].size
+        if(fileSize > limit) {
+            window.alert('파일 첨부 용량은 1MB 이내로 가능하며 .py 파일로 제출하시는 것을 권장드립니다')
+            event.target.value = null
+            return
+        }
+        // 형식 확인
+        const fileType = event.target.files[0].type
+        if(!fileType.includes('python')) {
+            window.alert(`제출하신 파일은 .py 파일이 아닙니다! 파일에 이상이 있는 경우 채점 시 불이익이 발생할 수 있습니다`)
+        }
         event.preventDefault()
         const reader = new FileReader()
         console.log(reader)
