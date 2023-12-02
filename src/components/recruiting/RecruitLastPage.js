@@ -39,12 +39,15 @@ export const RecruitLastPage = (props) => {
         }
         // 형식 확인
         const fileType = event.target.files[0].type
-        if(!fileType.includes('python')) {
+        const filename = event.target.files[0].name
+        const dotIndex = filename.lastIndexOf('.')
+        const exp = filename.substring(dotIndex)
+        if(!fileType.includes('python') || exp !== '.py') {
             window.alert(`제출하신 파일은 .py 파일이 아닙니다! 파일에 이상이 있는 경우 채점 시 불이익이 발생할 수 있습니다`)
         }
         event.preventDefault()
         const reader = new FileReader()
-        console.log(reader)
+        // console.log(reader)
         reader.onload = () => {
             if (reader.readyState === 2) {
                 props.setFileInfo(event.target.files[0])
@@ -57,11 +60,11 @@ export const RecruitLastPage = (props) => {
         reader.readAsDataURL(event.target.files[0])
         
         const textReader = new FileReader()
-        console.log(textReader)
+        // console.log(textReader)
         textReader.onload = () => {
             if(textReader.readyState === 2) {
                 console.log(event.target.files[0])
-                if(!event.target.files[0].type.includes('python')) {
+                if(!event.target.files[0].type.includes('python') || exp !== '.py') {
                     props.setFileContent(`제출하신 파일은 .py 파일이 아닙니다! 채점 시 불이익이 발생할 수 있습니다. 그대로 제출하시겠습니까?\n${textReader.result}`)
                 } else {
                     props.setFileContent(textReader.result)
